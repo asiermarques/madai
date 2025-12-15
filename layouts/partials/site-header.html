@@ -1,0 +1,27 @@
+<header>
+  <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <p class="links">
+                    <a href="{{ (site.GetPage "info" "about").Permalink }}">{{ T "about" }}</a>
+                </p>
+            </div>
+          <div class="col-12 col-md-6">
+              <p class="links text-right" style="text-align: right;">
+                  {{ range $.Site.Home.AllTranslations }}
+                  <a href="{{ .RelPermalink }}"
+                     class="{{ if eq .Lang $.Lang }}current{{ end }} lang">{{ .Language.LanguageName }}</a>
+                  {{ end }}
+              </p>
+          </div>
+        </div>
+    </div>
+    <div id="logoContainer">
+        {{ with resources.Get "img/logo.svg" }}
+            <a href="">
+                <img src="{{.Permalink}}" alt="">
+            </a>
+        {{end}}
+
+    </div>
+</header>

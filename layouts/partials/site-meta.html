@@ -1,0 +1,22 @@
+{{ $url := urls.Parse .Site.BaseURL }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{T "meta_title"}}</title>
+<meta name="description" content="{{T "meta_description"}}">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/icon/favicon-16x16.png">
+<link rel="manifest" href="/img/icon/site.webmanifest">
+<meta property="og:url" content="{{ .Site.BaseURL }}">
+<meta property="twitter:url" content="{{ .Site.BaseURL }}">
+<meta property="twitter:domain" content="{{$url.Host}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{$.Site.Params.hashtag}}">
+<meta name="twitter:title" content="{{$.Site.Params.hashtag}}">
+<meta property="og:description" content="{{T "meta_description" }}">
+<meta name="twitter:description" content="{{T "meta_description"}}">
+{{ with resources.Get "img/share-logo.png" }}
+    <meta property="og:image" content="{{ .Permalink }}">
+    <meta name="twitter:image" content="{{ .Permalink }}">
+{{ end }}
+<meta name="twitter:card" content="summary_large_image">

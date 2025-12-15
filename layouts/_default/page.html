@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section id="body-details">
+<article id="page">
+    <div class="container">
+        <a href="{{ref . "/"}}" class="back">← {{T "home_back"}}</a>
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+                <h1>{{.Title}}</h1>
+                {{.Content}}
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+{{ end }}

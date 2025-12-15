@@ -1,0 +1,20 @@
+{{- $title := or (.Get "title") T "talk_title_pending" }}
+{{- $tagline := or (.Get "tagline") T "talk_title_pending" }}
+{{- $image := or (.Get "image") "" }}
+
+<div class="row speaker-bio">
+    <div class="col-12 col-lg-5 speaker-image">
+        {{$imagePermalink := ""}}
+        {{ with resources.Get .Params.image }}
+        {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+        <div class="image-container"
+             style="background-image: url('{{.Permalink}}')"></div>
+        {{end}}
+        {{end}}
+    </div>
+    <div class="col-12 col-lg-7">
+        <h3>Acerca de {{ $title }}</h3>
+        <p>{{ $tagline }}</p>
+        <p>{{ .Inner | markdownify }}</p>
+    </div>
+</div>

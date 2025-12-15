@@ -1,0 +1,1 @@
+Follow our events on [Lu.ma](https://luma.com/madai) or read [more information about this community](/info/about).
