@@ -20,6 +20,10 @@ $font-family-sans-serif: "Open Sans", sans-serif;
 .links{
   padding-top: 10px;
 }
+a.back{
+  display: block;
+  padding-bottom: $base-space/2;
+}
 
 a.lang{
   color: $gray-600;
