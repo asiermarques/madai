@@ -13,7 +13,7 @@
         {{end}}
     </div>
     <div class="col-12 col-lg-7">
-        <h3>Acerca de {{ $title }}</h3>
+        <h3>{{ printf T "about_speaker" $title }}</h3>
         <p>{{ $tagline }}</p>
         <p>{{ .Inner | markdownify }}</p>
     </div>
