@@ -7,44 +7,40 @@
   </div>
 </article>
 {{ with first 1 (where site.RegularPages "Section" "events").ByDate.Reverse }}
-{{ range . }}
-<section id="body-details">
-    <div class="container">
-        <div id="next-event">
-            <h4>{{ T "next_event" }}</h4>
-            <div class="row">
-                <div class="col-12 col-md-7">
-                    {{ .Content }}
-                </div>
-                <div class="col-12 col-md-4 offset-md-1">
-                    <div class="card">
+    {{ range . }}
+    <section id="body-details">
+        <div class="container" id="next-event">
+                <h4>{{ T "next_event" }}</h4>
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        {{ .Content }}
+                    </div>
+                    <div class="col-12 col-md-4 offset-md-1">
                         <div class="card">
-                            <div class="card-body">
-                                <a href="{{ .Params.ticketsUrl }}" class="btn btn-primary"
-                                   style="width: 100%">{{ T "join_cta" }}</a>
-                                <hr>
-                                <p>🗓️ {{ .Params.day }} {{ .Params.time }}</p>
-                                <p>️📍 {{ .Params.where }}</p>
-                                    <iframe src="{{ .Params.map }}"
-                                            width="100%"
-                                            height="450"
-                                            style="border:0;"
-                                            allowfullscreen=""
-                                            loading="lazy"
-                                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="card">
+                                <div class="card-body">
+                                    <a href="{{ .Params.ticketsUrl }}" class="btn btn-primary"
+                                       style="width: 100%">{{ T "join_cta" }}</a>
+                                    <hr>
+                                    <p>🗓️ {{ .Params.day }} {{ .Params.time }}</p>
+                                    <p>️📍 {{ .Params.where }}</p>
+                                        <iframe src="{{ .Params.map }}"
+                                                width="100%"
+                                                height="450"
+                                                style="border:0;"
+                                                allowfullscreen=""
+                                                loading="lazy"
+                                                referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-                            </div>
+                                </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-        </div>
-</section>
+    </section>
+    {{ end }}
 {{ end }}
-{{ end }}
-
-
 
 {{end}}
     
