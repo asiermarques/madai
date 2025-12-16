@@ -16,7 +16,7 @@ image = 'img/speakers/carlos.jpg'
 +++
 
 {{<speaker_talk title="No Time to Whisper: Hard Lessons from Scaling GPU-Powered AI for Doctor Visit Transcription">}}
-Building AI for clinical environments leaves little room for mistakes. In this talk, we share Docplanner’s journey of self-hosting and scaling a GPU-powered transcription system for doctor visits—starting with a team that had limited MLOps and GPU experience.
+Building AI for clinical environments leaves little room for mistakes. In this talk, we share Docplanner’s journey of self-hosting and scaling a GPU-powered AI transcription system for doctor visits—starting with a team that had limited MLOps and GPU experience.
 
 We’ll walk through the real challenges we faced: deploying and operating large models in production, managing GPUs efficiently, ensuring reliability under load, and meeting strict medical data compliance requirements. You’ll learn the hard lessons, architectural decisions, and practical MLOps strategies that helped us move from early failures to a stable, high-accuracy system in a critical healthcare setting.
 {{</speaker_talk>}}

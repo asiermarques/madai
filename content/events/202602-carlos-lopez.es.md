@@ -16,7 +16,7 @@ image = 'img/speakers/carlos.jpg'
 +++
 
 {{<speaker_talk title="No time to whisper: lecciones aprendidas escalando un sistema GPU-powered AI para la transcripción de visitas médicas">}}
-Crear IA para entornos clínicos deja muy poco margen para el error. En esta charla compartimos el recorrido de [Docplanner](https://www.docplanner.com/) al disponibilizar y escalar un sistema de transcripción basado en GPUs para visitas médicas, partiendo de un equipo con experiencia limitada en MLOps y en el uso de GPUs.
+Crear IA para entornos clínicos deja muy poco margen para el error. En esta charla compartimos el recorrido de [Docplanner](https://www.docplanner.com/) al disponibilizar y escalar un sistema IA de transcripción para visitas médicas basado en GPUs, partiendo de un equipo con experiencia limitada en MLOps y en el uso de GPUs.
 
 Repasaremos los retos reales a los que nos enfrentamos: desplegar y operar modelos de gran tamaño en producción, gestionar GPUs de forma eficiente, garantizar la fiabilidad bajo carga y cumplir con estrictos requisitos de cumplimiento en materia de datos médicos. Aprenderás las lecciones que aprendimos por la fuerza, las decisiones de arquitectura y las estrategias prácticas de MLOps que nos permitieron pasar de los primeros fracasos a un sistema estable y de alta precisión en un entorno sanitario crítico.
 {{</speaker_talk>}}
