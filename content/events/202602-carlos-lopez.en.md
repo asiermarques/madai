@@ -29,3 +29,13 @@ He is currently focused on building an AI platform at Docplanner while helping p
 * [Linkedin](https://www.linkedin.com/in/carlos-lopez-vecino/)
 * [Bluesky](https://bsky.app/profile/carloslopez.bsky.social)
 {{</speaker_bio>}}
+
+##### Agenda
+
+
+|       |                                                                                                   |
+|-------|---------------------------------------------------------------------------------------------------|
+| 18:30 | Welcome                                                                                           |
+| 19:00 | Talk: No Time to Whisper: Hard Lessons from Scaling GPU-Powered AI for Doctor Visit Transcription |
+| 20:00 | Networking                                                                                        |
+| 20:30 | Closing                                                                                           |

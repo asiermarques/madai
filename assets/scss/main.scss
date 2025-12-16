@@ -85,3 +85,15 @@ footer{
   padding: $base-space 0;
   color: $gray-800;
 }
+
+#next-event{
+  table{
+    width: 100%;
+    margin-bottom: $base-space;
+    td,th{
+      padding: $base-space/4;
+      text-align: left;
+      vertical-align: top;
+    }
+  }
+}

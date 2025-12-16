@@ -13,3 +13,5 @@ defaultContentLanguageInSubdir = false
       languageCode = 'en'
       languageName = 'EN'
       weight = 2
+[markup]
+    defaultMarkdownHandler = 'goldmark'
