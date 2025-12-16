@@ -1,6 +1,6 @@
 +++
 date = 2024-02-12T18:30:00Z
-draft = true
+draft = false
 layout = 'speaker-detail'
 type = 'event'
 title = 'No time to whisper'
@@ -10,7 +10,7 @@ day = '12.02.2026'
 time = '19:00h'
 where = 'Puerta de Innovación, Madrid'
 map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.06100241481!2d-3.7140335870457317!3d40.40749937132206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42277bae117a99%3A0x8b6111f0b83fbfbc!2sPuerta%20Innovaci%C3%B3n!5e0!3m2!1ses!2ses!4v1765662965334!5m2!1ses!2ses'
-ticketsUrl = ''
+ticketsUrl = 'https://luma.com/ksurg4pr'
 description = 'Carlos López at MadAI - Staff Platform Engineer at Docplanner'
 image = 'img/speakers/carlos.jpg'
 +++
