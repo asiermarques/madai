@@ -23,7 +23,7 @@ La IA ya no es sólo una herramienta aislada o un asistente bajo demanda dentro 
 ​En esta sesión exploraremos qué piezas son clave en este tipo de flujos, qué tipo de retos surgen a la hora de adoptarlos y las implicaciones tras las decisiones que tomes cuando intentas llevar todo esto a equipos que están desarrollando software crítico en producción. Esta no pretende ser una charla dogmática; el objetivo es abrir debate y dar perspectiva en un contexto que ahora mismo avanza muy rápido, con muchas novedades cada mes y, bastante ruido también.
 {{</speaker_talk>}}
 
-{{<speaker_bio title="Asier Marqués" tagline="Engineering Manager at BestSecret" image="img/speakers/asier.jpg">}}
+{{<speaker_bio title="Asier Marqués" tagline="Engineering Manager en BestSecret Group" image="img/speakers/asier.jpg">}}
 
 Llevo cerca de dos décadas liderando equipos y proyectos en el mundo tecnológico, combinando la gestión de personas con la estrategia tecnológica.
 
