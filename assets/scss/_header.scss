@@ -3,118 +3,126 @@
 @use "bootstrap" as bs;
 
 // ─────────────────────────────────────────────────────────────────────────
-// Header — unified brand-blue surface (one color, white logo + white nav)
+// Header — architectural nav bar above the hero
 // ─────────────────────────────────────────────────────────────────────────
+
+@keyframes navFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 header {
   position: relative;
-  background: $madai-primary;
-  // very subtle vertical depth within a single hue; flows seamlessly into the hero below
-  background-image: linear-gradient(180deg, color.adjust($madai-primary, $lightness: 6%) 0%, $madai-primary 100%);
-  overflow: hidden;
+  background: color.adjust($madai-primary, $lightness: -6%);
+  z-index: 100;
+  animation: navFadeIn .5s ease both;
 
-  // faint node-graph motif echoing the logo, low-opacity so it stays calm
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      radial-gradient(rgba($madai-white, .14) 1.2px, transparent 1.3px);
-    background-size: 26px 26px;
-    background-position: 0 0;
-    -webkit-mask-image: linear-gradient(180deg, transparent, #000 65%);
-            mask-image: linear-gradient(180deg, transparent, #000 65%);
-  }
+  // a crisp single-pixel bottom border that separates header from hero
+  border-bottom: 1px solid rgba($madai-white, .10);
 
   .container { position: relative; z-index: 1; }
 }
 
 header .container > .row {
   align-items: center;
-  min-height: 56px;
-  padding-top: .35rem;
+  min-height: 52px;
+  padding-top: .2rem;
 }
 
-// ── Nav links (left column)
+// ── Nav links
 p.links {
   margin-bottom: 0;
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 2rem;
 
   a {
     position: relative;
     font-family: $body-font;
-    font-size: .9rem;
-    font-weight: 600;
-    letter-spacing: .01em;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
     white-space: nowrap;
-    color: rgba($madai-white, .78);
+    color: rgba($madai-white, .62);
     text-decoration: none;
-    padding: .85rem 0 .8rem;
-    border-bottom: 2px solid transparent;
-    transition: color .15s, border-color .15s;
+    padding: .9rem 0;
+    transition: color .18s;
 
-    &:hover { color: $madai-white; }
+    // thin accent bar that slides in from left on hover / active
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: rgba($madai-white, .9);
+      border-radius: 999px;
+      transition: width .22s ease;
+    }
 
-    // active section indicator (also used on hover, lighter)
+    &:hover {
+      color: rgba($madai-white, .9);
+      &::after { width: 100%; }
+    }
+
     &.current {
       color: $madai-white;
-      border-color: rgba($madai-white, .9);
+      &::after { width: 100%; }
     }
   }
 }
 
-// ── Language switcher (right column) — same text-link language as the nav
+// ── Language switcher
 .lang-switch {
   justify-content: flex-end;
-  gap: .9rem;
+  gap: .8rem;
 }
 
 a.lang {
   font-family: $body-font;
-  font-size: .8rem;
+  font-size: .72rem;
   font-weight: 700;
-  letter-spacing: .06em;
-  color: rgba($madai-white, .58);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba($madai-white, .42);
   text-decoration: none;
-  padding: .85rem 0 .8rem;
-  border-bottom: 2px solid transparent;
-  transition: color .15s, border-color .15s;
+  padding: .9rem 0;
+  transition: color .18s;
 
-  &:hover { color: rgba($madai-white, .9); }
+  &:hover { color: rgba($madai-white, .78); }
 
-  &.current {
-    color: $madai-white;
-    border-color: rgba($madai-white, .9);
-  }
+  &.current { color: rgba($madai-white, .9); }
 }
 
-// ── Mobile-first: keep the nav on one line on small screens
+// ── Mobile
 @include bs.media-breakpoint-down(sm) {
-  p.links { gap: 1.05rem; }
-  p.links a { font-size: .82rem; }
-  .lang-switch { gap: .55rem; }
-  a.lang { font-size: .74rem; }
+  p.links { gap: 1.1rem; }
+  p.links a { font-size: .72rem; letter-spacing: .06em; }
+  .lang-switch { gap: .5rem; }
+  a.lang { font-size: .68rem; }
 }
 
-// ── Logo (same blue surface — no separate panel color)
+// ── Logo: lives inside the hero now (moved below), but #logoContainer
+//    stays in the header partial so we keep the same HTML structure.
 #logoContainer {
-  padding: 1.75rem 0 1.5rem;
+  padding: 2.2rem 0 2rem;
   text-align: center;
 
   a {
     display: inline-block;
     text-decoration: none;
-    transition: opacity .2s, transform .2s;
-    &:hover { opacity: .92; transform: translateY(-1px); }
+    transition: opacity .22s, transform .22s;
+    &:hover { opacity: .88; transform: translateY(-2px); }
   }
 
   img {
-    width: 320px;
-    max-width: 74%;
+    width: 300px;
+    max-width: 100%;
     height: auto;
     filter: brightness(0) invert(1);
+    animation: navFadeIn .65s .15s ease both;
   }
 }

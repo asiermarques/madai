@@ -225,24 +225,57 @@
       width: 100%;
       margin-bottom: $base-space;
       border-collapse: collapse;
+      border-left: 3px solid $madai-primary;
+      border-radius: .25rem;
+
+      // hide empty header rows (agenda tables have blank th cells)
+      thead tr:has(th:empty) { display: none; }
 
       th {
         font-family: $body-font;
-        font-size: .78rem;
+        font-size: .72rem;
         text-transform: uppercase;
-        letter-spacing: .07em;
+        letter-spacing: .09em;
         color: $madai-muted;
-        padding: .55rem .75rem;
+        padding: .5rem .9rem;
         border-bottom: 1px solid $madai-border;
         text-align: left;
         font-weight: 700;
+        background: $madai-surface;
+      }
+
+      tbody tr {
+        border-top: 1px solid $madai-border;
+        transition: background .14s;
+        &:first-child { border-top: none; }
+        &:hover { background: rgba($madai-primary, .04); }
       }
 
       td {
-        padding: .6rem .75rem;
+        padding: .7rem .9rem;
         color: $madai-text;
-        vertical-align: top;
-        font-size: .98rem;
+        vertical-align: middle;
+        font-size: .96rem;
+        line-height: 1.55;
+      }
+
+      // first column — treat as a timestamp/label
+      td:first-child, th:first-child {
+        font-family: $body-font;
+        font-size: .8rem;
+        font-weight: 700;
+        letter-spacing: .03em;
+        color: $madai-primary;
+        white-space: nowrap;
+        width: 5.5rem;
+        padding-right: .5rem;
+        font-variant-numeric: tabular-nums;
+      }
+
+      // second column — separator line from the label
+      td:nth-child(2), th:nth-child(2) {
+        border-left: 1px solid $madai-border;
+        padding-left: 1rem;
       }
     }
   }
@@ -256,25 +289,51 @@
     width: 100%;
     margin-bottom: $base-space;
     border-collapse: collapse;
+    border-left: 3px solid $madai-primary;
+
+    thead tr:has(th:empty) { display: none; }
+
+    tbody tr {
+      border-top: 1px solid $madai-border;
+      transition: background .14s;
+      &:first-child { border-top: none; }
+      &:hover { background: rgba($madai-primary, .04); }
+    }
 
     td, th {
-      padding: .55rem .6rem;
+      padding: .65rem .9rem;
       text-align: left;
-      vertical-align: top;
+      vertical-align: middle;
       font-size: .95rem;
+      line-height: 1.55;
     }
 
     th {
       font-family: $body-font;
-      font-size: .78rem;
+      font-size: .72rem;
       text-transform: uppercase;
-      letter-spacing: .07em;
+      letter-spacing: .09em;
       color: $madai-muted;
       font-weight: 700;
-      width: 28%;
+      background: $madai-surface;
       border-bottom: 1px solid $madai-border;
     }
 
-    td { color: $madai-text; }
+    td:first-child, th:first-child {
+      font-family: $body-font;
+      font-size: .8rem;
+      font-weight: 700;
+      color: $madai-primary;
+      white-space: nowrap;
+      width: 5.5rem;
+      font-variant-numeric: tabular-nums;
+      padding-right: .5rem;
+    }
+
+    td:nth-child(2), th:nth-child(2) {
+      border-left: 1px solid $madai-border;
+      padding-left: 1rem;
+      color: $madai-text;
+    }
   }
 }
