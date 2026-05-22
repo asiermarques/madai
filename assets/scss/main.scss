@@ -1,99 +1,670 @@
-//https://www.color-hex.com/color/2a6f97
-$black: #040b0f;
-$white: #f8fafb;
-$gray-100: #e9f0f4;
-$gray-200: #bfd3df;
-$gray-300: #a9c5d5;
-$gray-400: #7fa8c0;
-$gray-500: #548bab;
-$gray-600: #2a6f97;
-$gray-700: #215878;
-$gray-800: #19425a;
-$gray-900: #101315;
-$font-size-base: 1.2rem;
-$base-space: 2rem;
-$card-border-width: 0;
-$body-bg: $gray-100;
-$primary: $gray-700;
-$font-family-sans-serif: "Open Sans", sans-serif;
+// ─────────────────────────────────────────────────────────────────────────
+// MadAi — Calm, editorial design system (per DESIGN.md)
+// Brand blue #2a6f97 · soft #e2eef2 · Crimson Text + Open Sans
+// ─────────────────────────────────────────────────────────────────────────
+
+// ── Palette ───────────────────────────────────────────────────────────
+$madai-primary:      #2a6f97;
+$madai-primary-dark: #235d80;
+$madai-light:        #e2eef2;
+$madai-white:        #ffffff;
+$madai-bg:           #ffffff;
+$madai-surface:      #f7fafc;
+$madai-border:       #d7e3ea;
+$madai-ink:          #122a3a;
+$madai-text:         #2c3e4a;
+$madai-muted:        #5b7280;
+
+// ── Fonts ─────────────────────────────────────────────────────────────
+$heading-font: "Crimson Text", Georgia, serif;
+$body-font:    "Open Sans", Arial, sans-serif;
+
+// ── Bootstrap variable overrides ──────────────────────────────────────
+$black:                  #0b1a24;
+$white:                  #ffffff;
+$gray-100:               #f7fafc;
+$gray-200:               #eef4f7;
+$gray-300:               $madai-border;
+$gray-400:               #b9cad5;
+$gray-500:               #8aa0ad;
+$gray-600:               $madai-muted;
+$gray-700:               $madai-text;
+$gray-800:               $madai-ink;
+$gray-900:               #0b1a24;
+$font-size-base:         1rem;
+$base-space:             2rem;
+$body-bg:                $madai-bg;
+$body-color:             $madai-text;
+$primary:                $madai-primary;
+$link-color:             $madai-primary;
+$link-decoration:        underline;
+$link-hover-color:       $madai-primary-dark;
+$card-bg:                $madai-white;
+$card-border-color:      $madai-border;
+$card-border-width:      1px;
+$border-radius:          .5rem;
+$border-radius-sm:       .375rem;
+$border-radius-lg:       .75rem;
+$font-family-sans-serif: $body-font;
+$headings-font-family:   $heading-font;
+$headings-font-weight:   700;
+$headings-color:         $madai-ink;
+$btn-border-radius:      .375rem;
+$btn-padding-x:          1.5rem;
+$btn-font-weight:        600;
+
 @import "../../vendor/bootstrap/bootstrap";
-.links{
-  padding-top: 10px;
-}
-a.back{
-  display: block;
-  padding-bottom: $base-space/2;
+
+// ─────────────────────────────────────────────────────────────────────────
+// Base
+// ─────────────────────────────────────────────────────────────────────────
+::selection {
+  background: rgba($madai-primary, .18);
+  color: $madai-ink;
 }
 
-a.lang{
-  color: $gray-600;
-  padding-left: 0 $base-space/2;
-  display: inline-block;
+body {
+  background: $madai-bg;
+  color: $madai-text;
+  font-family: $body-font;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
-a.lang.current{
-  color: $gray-800 ;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $heading-font;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: $madai-ink;
+  line-height: 1.2;
+}
+
+a {
+  color: $madai-primary;
+  text-underline-offset: 2px;
+  transition: color .15s;
+  &:hover { color: $madai-primary-dark; }
+}
+
+// Links rendered as buttons should never carry the editorial underline
+.btn,
+a.btn {
   text-decoration: none;
+  &:hover { text-decoration: none; }
 }
-#logoContainer{
-  margin-top: $base-space*2;
-  text-align: center;
-  a{
+
+:focus-visible {
+  outline: 2px solid $madai-primary;
+  outline-offset: 2px;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Header — unified brand-blue surface (one color, white logo + white nav)
+// ─────────────────────────────────────────────────────────────────────────
+header {
+  position: relative;
+  background: $madai-primary;
+  // very subtle vertical depth within a single hue; flows seamlessly into the hero below
+  background-image: linear-gradient(180deg, lighten($madai-primary, 6%) 0%, $madai-primary 100%);
+  overflow: hidden;
+
+  // faint node-graph motif echoing the logo, low-opacity so it stays calm
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba($madai-white, .14) 1.2px, transparent 1.3px);
+    background-size: 26px 26px;
+    background-position: 0 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 65%);
+            mask-image: linear-gradient(180deg, transparent, #000 65%);
+  }
+
+  .container { position: relative; z-index: 1; }
+}
+
+header .container > .row {
+  align-items: center;
+  min-height: 56px;
+  padding-top: .35rem;
+}
+
+// ── Nav links (left column)
+p.links {
+  margin-bottom: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+
+  a {
+    position: relative;
+    font-family: $body-font;
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    color: rgba($madai-white, .78);
     text-decoration: none;
-    img{
-      width: 400px;
-      max-width: 80%;
-      height: auto;
-    }
-    :hover{
-      opacity: 0.8;
+    padding: .85rem 0 .8rem;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+
+    &:hover { color: $madai-white; }
+
+    // active section indicator (also used on hover, lighter)
+    &.current {
+      color: $madai-white;
+      border-color: rgba($madai-white, .9);
     }
   }
 }
 
-#description{
-    h1{
-      color: $gray-600;
-    }
-    padding-top: $base-space/2;
-    padding-bottom: $base-space*2;
+// ── Language switcher (right column) — same text-link language as the nav
+.lang-switch {
+  justify-content: flex-end;
+  gap: .9rem;
 }
 
-#body-details{
-  background: $white;
-  display: block;
-  padding: $base-space 0;
-  #next-event{
-    h4{
-      margin-bottom: $base-space/6;
-      color: $gray-800;
-    }
-    .talk{
-      margin-bottom: $base-space*2;
+a.lang {
+  font-family: $body-font;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: rgba($madai-white, .58);
+  text-decoration: none;
+  padding: .85rem 0 .8rem;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+
+  &:hover { color: rgba($madai-white, .9); }
+
+  &.current {
+    color: $madai-white;
+    border-color: rgba($madai-white, .9);
+  }
+}
+
+// ── Logo (same blue surface — no separate panel color)
+#logoContainer {
+  padding: 1.75rem 0 1.5rem;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    transition: opacity .2s, transform .2s;
+    &:hover { opacity: .92; transform: translateY(-1px); }
+  }
+
+  img {
+    width: 320px;
+    max-width: 74%;
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Back link
+// ─────────────────────────────────────────────────────────────────────────
+a.back {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: $body-font;
+  font-size: .85rem;
+  font-weight: 600;
+  color: $madai-muted;
+  text-decoration: none;
+  margin-bottom: $base-space;
+  padding: .4rem .85rem;
+  border: 1px solid $madai-border;
+  border-radius: .375rem;
+  transition: color .15s, border-color .15s, background .15s;
+
+  &:hover {
+    color: $madai-primary;
+    border-color: $madai-primary;
+    background: $madai-light;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Hero — home description
+// ─────────────────────────────────────────────────────────────────────────
+// Continues the header's blue surface: header + this form one unified hero.
+#description {
+  position: relative;
+  background: $madai-primary;
+  background-image: linear-gradient(180deg, $madai-primary 0%, $madai-primary-dark 100%);
+  padding: .5rem 0 4.5rem;
+  margin-top: -1px; // hide the hairline seam against the header
+  overflow: hidden;
+
+  // faint node texture echoing the header — same white dots, same hue
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba($madai-white, .12) 1.2px, transparent 1.3px);
+    background-size: 26px 26px;
+    -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%);
+            mask-image: linear-gradient(180deg, #000, transparent 85%);
+  }
+
+  .container { position: relative; z-index: 1; }
+
+  h1 {
+    font-family: $heading-font;
+    font-size: clamp(1.7rem, 4.2vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -.012em;
+    color: $madai-white;
+    max-width: 780px;
+    margin: 0 auto;
+    line-height: 1.3;
+
+    // a slim light accent under the hero statement
+    &::after {
+      content: "";
       display: block;
+      width: 56px;
+      height: 3px;
+      margin: 1.5rem auto 0;
+      border-radius: 999px;
+      background: rgba($madai-white, .65);
     }
-    .image-container{
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Body details — light content panel
+// ─────────────────────────────────────────────────────────────────────────
+#body-details {
+  background: $madai-bg;
+  display: block;
+  padding: $base-space*1.75 0;
+
+  // ── Next event (home) ───────────────────────────────────────────────
+  #next-event {
+    h4 {
+      font-family: $body-font;
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: $madai-primary;
+      margin-bottom: $base-space*.75;
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+
+      &::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: $madai-primary;
+        box-shadow: 0 0 0 4px rgba($madai-primary, .16);
+      }
+    }
+
+    .talk {
+      margin-bottom: $base-space*1.5;
+      display: block;
+
+      h2 {
+        font-family: $body-font;
+        font-size: .85rem;
+        font-weight: 700;
+        color: $madai-muted;
+        margin-bottom: .35rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .talk-title {
+        font-family: $heading-font;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: $madai-ink;
+        line-height: 1.15;
+        margin-bottom: $base-space*.6;
+      }
+
+      .talk-description {
+        color: $madai-text;
+        line-height: 1.8;
+        font-size: 1.05rem;
+      }
+    }
+
+    .image-container {
       width: 100%;
-      height: 350px;
+      height: 320px;
       display: block;
       background-size: cover;
+      background-position: center top;
       margin-bottom: $base-space;
+      border: 1px solid $madai-border;
+      border-radius: .75rem;
+    }
+  }
+
+  // ── Event info card (date · location · map · CTA) ────────────────────
+  .event-info {
+    background: $madai-white;
+    border: 1px solid $madai-border;
+    border-radius: .9rem;
+    box-shadow: 0 6px 24px rgba($madai-ink, .07);
+    overflow: hidden;
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    &__list {
+      list-style: none;
+      margin: 0 0 1.25rem;
+      padding: 0;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .35rem 0;
+      color: $madai-ink;
+      font-size: .98rem;
+      font-weight: 600;
+
+      & + & { border-top: 1px solid rgba($madai-border, .7); padding-top: .7rem; margin-top: .35rem; }
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: .6rem;
+      background: $madai-light;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    &__value { line-height: 1.4; }
+
+    &__map {
+      border-radius: .6rem;
+      overflow: hidden;
+      border: 1px solid $madai-border;
+      margin-bottom: 1.25rem;
+      line-height: 0;
+
+      iframe { display: block; width: 100%; }
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: $madai-primary;
+      color: $madai-white;
+      border: 1px solid $madai-primary;
+      font-family: $body-font;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+      padding: .9rem 1rem;
+      border-radius: .55rem;
+      box-shadow: 0 4px 14px rgba($madai-primary, .25);
+      transition: background .15s, border-color .15s, box-shadow .2s, transform .15s;
+      text-align: center;
+
+      &:hover:not(.disabled) {
+        background: $madai-primary-dark;
+        border-color: $madai-primary-dark;
+        color: $madai-white;
+        box-shadow: 0 8px 22px rgba($madai-primary, .32);
+        transform: translateY(-2px);
+      }
+
+      &.disabled {
+        background: $madai-surface;
+        border-color: $madai-border;
+        color: $madai-muted;
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // ── Speaker bio shortcode ────────────────────────────────────────────
+  .speaker-bio {
+    margin-top: $base-space*1.5;
+
+    h3 {
+      font-family: $heading-font;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: $madai-ink;
+      margin-bottom: .35rem;
+    }
+
+    p { color: $madai-text; line-height: 1.8; }
+
+    .col-12.col-lg-7 > p:first-of-type {
+      font-family: $body-font;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $madai-primary;
+      margin-bottom: $base-space*.5;
+    }
+  }
+
+  .speaker-image .speaker-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid $madai-border;
+    border-radius: .75rem;
+    background: $madai-surface;
+  }
+
+  // ── Generic page content ─────────────────────────────────────────────
+  #page {
+    p { line-height: 1.85; color: $madai-text; }
+
+    a {
+      color: $madai-primary;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      &:hover { color: $madai-primary-dark; }
+    }
+
+    table {
+      width: 100%;
+      margin-bottom: $base-space;
+      border-collapse: collapse;
+
+      th {
+        font-family: $body-font;
+        font-size: .78rem;
+        text-transform: uppercase;
+        letter-spacing: .07em;
+        color: $madai-muted;
+        padding: .55rem .75rem;
+        border-bottom: 1px solid $madai-border;
+        text-align: left;
+        font-weight: 700;
+      }
+
+      td {
+        padding: .6rem .75rem;
+        color: $madai-text;
+        vertical-align: top;
+        font-size: .98rem;
+      }
     }
   }
 }
 
-footer{
-  padding: $base-space 0;
-  color: $gray-800;
-}
-
-#next-event{
-  table{
+// ─────────────────────────────────────────────────────────────────────────
+// Next-event table (standalone, outside #body-details)
+// ─────────────────────────────────────────────────────────────────────────
+#next-event {
+  table {
     width: 100%;
     margin-bottom: $base-space;
-    td,th{
-      padding: $base-space/4;
+    border-collapse: collapse;
+
+    td, th {
+      padding: .55rem .6rem;
       text-align: left;
       vertical-align: top;
+      font-size: .95rem;
+    }
+
+    th {
+      font-family: $body-font;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: $madai-muted;
+      font-weight: 700;
+      width: 28%;
+      border-bottom: 1px solid $madai-border;
+    }
+
+    td { color: $madai-text; }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Footer — soft brand surface
+// ─────────────────────────────────────────────────────────────────────────
+footer {
+  background: $madai-light;
+  padding: $base-space*1.75 0;
+  color: $madai-text;
+
+  h2, h3 {
+    font-family: $heading-font;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $madai-ink;
+    letter-spacing: -.01em;
+    margin-bottom: .75rem;
+  }
+
+  p, li {
+    font-size: .95rem;
+    line-height: 1.75;
+    color: $madai-text;
+  }
+
+  a {
+    color: $madai-primary;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    &:hover { color: $madai-primary-dark; }
+  }
+
+  iframe {
+    border: 1px solid $madai-border !important;
+    border-radius: .5rem;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Events list page
+// ─────────────────────────────────────────────────────────────────────────
+#events-list {
+  padding: 0 0 $base-space*.25;
+
+  h1 {
+    font-family: $heading-font;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -.015em;
+    color: $madai-ink;
+    margin-bottom: $base-space*1.25;
+  }
+
+  .event-card {
+    display: block;
+    text-decoration: none;
+    color: $madai-text;
+    height: 100%;
+    margin-bottom: $base-space;
+    background: $madai-white;
+    border: 1px solid $madai-border;
+    border-radius: .75rem;
+    overflow: hidden;
+    transition: border-color .2s, box-shadow .2s, transform .18s;
+
+    &:hover {
+      border-color: $madai-primary;
+      box-shadow: 0 10px 28px rgba($madai-primary, .14);
+      transform: translateY(-4px);
+
+      .event-card__title { color: $madai-primary; }
+      .event-card__image { transform: scale(1.03); }
+    }
+
+    &__image {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center top;
+      transition: transform .4s ease;
+    }
+
+    &__body {
+      padding: 1.35rem;
+    }
+
+    &__date {
+      display: inline-block;
+      font-family: $body-font;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: $madai-primary;
+      background: $madai-light;
+      padding: .28rem .6rem;
+      border-radius: 999px;
+      margin-bottom: .85rem;
+    }
+
+    &__title {
+      font-family: $heading-font;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $madai-ink;
+      margin-bottom: .4rem;
+      line-height: 1.2;
+      transition: color .15s;
+    }
+
+    &__speaker {
+      font-family: $body-font;
+      font-size: .9rem;
+      font-weight: 600;
+      color: $madai-text;
+      margin-bottom: .25rem;
+    }
+
+    &__tagline {
+      font-size: .9rem;
+      color: $madai-muted;
+      margin-bottom: 0;
     }
   }
 }

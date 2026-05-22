@@ -1,20 +1,25 @@
 <header>
   <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-7">
                 <p class="links">
-                    {{ if not (eq . (site.GetPage "about")) }}
+                    <a href="{{ site.Home.RelPermalink }}"
+                       class="{{ if $.IsHome }}current{{ end }}">{{ T "home" }}</a>
                     {{ with $.Site.GetPage "/info/about" }}
-                    <a href="{{ .Permalink }}">{{ T "about" }}</a>
+                    <a href="{{ .RelPermalink }}"
+                       class="{{ if eq $.RelPermalink .RelPermalink }}current{{ end }}">{{ T "about" }}</a>
                     {{ end }}
+                    {{ with $.Site.GetPage "/events" }}
+                    <a href="{{ .RelPermalink }}"
+                       class="{{ if eq $.Section "events" }}current{{ end }}">{{ T "events" }}</a>
                     {{ end }}
                 </p>
             </div>
-          <div class="col-6">
-              <p class="links" style="text-align: right;">
+          <div class="col-5">
+              <p class="links lang-switch">
                   {{ range $.Site.Home.AllTranslations }}
                   <a href="{{ .RelPermalink }}"
-                     class="{{ if eq .Lang $.Lang }}current{{ end }} lang">{{ .Language.LanguageName }}</a>
+                     class="{{ if eq .Lang $.Lang }}current{{ end }} lang">{{ .Language.Lang | upper }}</a>
                   {{ end }}
               </p>
           </div>
@@ -23,7 +28,7 @@
     <div id="logoContainer">
         {{ with resources.Get "img/logo.svg" }}
             <a href="/">
-                <img src="{{.Permalink}}" alt="">
+                <img src="{{.RelPermalink}}" alt="">
             </a>
         {{end}}
 

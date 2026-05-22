@@ -16,29 +16,34 @@
                         {{ .Content }}
                     </div>
                     <div class="col-12 col-md-4 offset-md-1">
-                        <div class="card">
-                            <div class="card">
-                                <div class="card-body">
-                                    {{ if .Params.ticketsUrl }}
-                                    <a href="{{ .Params.ticketsUrl }}" class="btn btn-primary"
-                                       style="width: 100%">{{ T "join_cta" }}</a>
-                                    {{ else }}
-                                    <a href="#" class="btn btn-primary disabled">{{ T "join_cta_pending" }}</a>
-                                    {{ end }}
-                                    <hr>
-                                    <p>🗓️ {{ .Params.day }} {{ .Params.time }}</p>
-                                    <p>️📍 {{ .Params.where }}</p>
-                                        <iframe src="{{ .Params.map }}"
-                                                width="100%"
-                                                height="450"
-                                                style="border:0;"
-                                                allowfullscreen=""
-                                                loading="lazy"
-                                                referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+                        <div class="card event-info">
+                            <div class="card-body">
+                                <ul class="event-info__list">
+                                    <li class="event-info__item">
+                                        <span class="event-info__icon" aria-hidden="true">🗓️</span>
+                                        <span class="event-info__value">{{ .Params.day }} · {{ .Params.time }}</span>
+                                    </li>
+                                    <li class="event-info__item">
+                                        <span class="event-info__icon" aria-hidden="true">📍</span>
+                                        <span class="event-info__value">{{ .Params.where }}</span>
+                                    </li>
+                                </ul>
+                                <div class="event-info__map">
+                                    <iframe src="{{ .Params.map }}"
+                                            width="100%"
+                                            height="260"
+                                            style="border:0;"
+                                            allowfullscreen=""
+                                            loading="lazy"
+                                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
+                                {{ if .Params.ticketsUrl }}
+                                <a href="{{ .Params.ticketsUrl }}" class="btn btn-primary">{{ T "join_cta" }}</a>
+                                {{ else }}
+                                <a href="#" class="btn btn-primary disabled">{{ T "join_cta_pending" }}</a>
+                                {{ end }}
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>

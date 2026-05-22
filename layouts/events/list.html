@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section id="body-details">
+  <div class="container" id="events-list">
+    <a href="{{ site.Home.RelPermalink }}" class="back">← {{ T "home_back" }}</a>
+    <h1>{{ .Title }}</h1>
+    <div class="row">
+      {{ range sort .RegularPages "Date" "desc" }}
+      <div class="col-12 col-md-6 col-lg-4">
+        <a href="{{ .RelPermalink }}" class="event-card">
+          {{ with .Params.image }}
+          {{ with resources.Get . }}
+          {{ with .Resize "400x webp q70 lanczos" }}
+          <div class="event-card__image" style="background-image: url('{{ .RelPermalink }}')"></div>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          <div class="event-card__body">
+            <span class="event-card__date">{{ .Params.day }}</span>
+            <h2 class="event-card__title">{{ .Title }}</h2>
+            <p class="event-card__speaker">{{ .Params.speaker }}</p>
+            <p class="event-card__tagline">{{ .Params.tagline }}</p>
+          </div>
+        </a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
