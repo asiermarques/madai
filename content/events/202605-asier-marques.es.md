@@ -33,7 +33,7 @@ A lo largo de mi carrera he fundado varias empresas tecnológicas y he formado p
 * [Bluesky](https://bsky.app/profile/asiermarques.com)
 {{</speaker_bio>}}
 
----
+
 
 ##### Agenda
 

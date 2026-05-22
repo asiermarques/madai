@@ -1,0 +1,70 @@
+@use "variables" as *;
+
+// ─────────────────────────────────────────────────────────────────────────
+// Base
+// ─────────────────────────────────────────────────────────────────────────
+::selection {
+  background: rgba($madai-primary, .18);
+  color: $madai-ink;
+}
+
+body {
+  background: $madai-bg;
+  color: $madai-text;
+  font-family: $body-font;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $heading-font;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: $madai-ink;
+  line-height: 1.2;
+}
+
+a {
+  color: $madai-primary;
+  text-underline-offset: 2px;
+  transition: color .15s;
+  &:hover { color: $madai-primary-dark; }
+}
+
+// Links rendered as buttons should never carry the editorial underline
+.btn,
+a.btn {
+  text-decoration: none;
+  &:hover { text-decoration: none; }
+}
+
+:focus-visible {
+  outline: 2px solid $madai-primary;
+  outline-offset: 2px;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Back link
+// ─────────────────────────────────────────────────────────────────────────
+a.back {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: $body-font;
+  font-size: .85rem;
+  font-weight: 600;
+  color: $madai-muted;
+  text-decoration: none!important;
+  margin-bottom: $base-space;
+  padding: .4rem .85rem;
+  border: 1px solid $madai-border;
+  border-radius: .375rem;
+  transition: color .15s, border-color .15s, background .15s;
+
+  &:hover {
+    color: $madai-primary;
+    border-color: $madai-primary;
+    background: $madai-light;
+  }
+}

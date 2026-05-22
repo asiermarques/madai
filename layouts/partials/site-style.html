@@ -8,7 +8,9 @@
 "enableSourceMap" (not hugo.IsProduction)
 "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
 "targetPath" "css/main.css"
-"transpiler" "libsass"
+"transpiler" "dartsass"
+"includePaths" (slice "vendor/bootstrap")
+"silenceDependencyDeprecations" true
 }}
 {{ with . | toCSS $opts }}
 {{ if hugo.IsProduction }}

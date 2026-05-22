@@ -64,7 +64,6 @@ Allowed weights:
 
 Use `Crimson Text Bold` for:
 
-* hero headings
 * page titles
 * section titles
 * major visual emphasis

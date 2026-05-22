@@ -1,0 +1,120 @@
+@use "sass:color";
+@use "variables" as *;
+@use "bootstrap" as bs;
+
+// ─────────────────────────────────────────────────────────────────────────
+// Header — unified brand-blue surface (one color, white logo + white nav)
+// ─────────────────────────────────────────────────────────────────────────
+header {
+  position: relative;
+  background: $madai-primary;
+  // very subtle vertical depth within a single hue; flows seamlessly into the hero below
+  background-image: linear-gradient(180deg, color.adjust($madai-primary, $lightness: 6%) 0%, $madai-primary 100%);
+  overflow: hidden;
+
+  // faint node-graph motif echoing the logo, low-opacity so it stays calm
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba($madai-white, .14) 1.2px, transparent 1.3px);
+    background-size: 26px 26px;
+    background-position: 0 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 65%);
+            mask-image: linear-gradient(180deg, transparent, #000 65%);
+  }
+
+  .container { position: relative; z-index: 1; }
+}
+
+header .container > .row {
+  align-items: center;
+  min-height: 56px;
+  padding-top: .35rem;
+}
+
+// ── Nav links (left column)
+p.links {
+  margin-bottom: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+
+  a {
+    position: relative;
+    font-family: $body-font;
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    color: rgba($madai-white, .78);
+    text-decoration: none;
+    padding: .85rem 0 .8rem;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+
+    &:hover { color: $madai-white; }
+
+    // active section indicator (also used on hover, lighter)
+    &.current {
+      color: $madai-white;
+      border-color: rgba($madai-white, .9);
+    }
+  }
+}
+
+// ── Language switcher (right column) — same text-link language as the nav
+.lang-switch {
+  justify-content: flex-end;
+  gap: .9rem;
+}
+
+a.lang {
+  font-family: $body-font;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: rgba($madai-white, .58);
+  text-decoration: none;
+  padding: .85rem 0 .8rem;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+
+  &:hover { color: rgba($madai-white, .9); }
+
+  &.current {
+    color: $madai-white;
+    border-color: rgba($madai-white, .9);
+  }
+}
+
+// ── Mobile-first: keep the nav on one line on small screens
+@include bs.media-breakpoint-down(sm) {
+  p.links { gap: 1.05rem; }
+  p.links a { font-size: .82rem; }
+  .lang-switch { gap: .55rem; }
+  a.lang { font-size: .74rem; }
+}
+
+// ── Logo (same blue surface — no separate panel color)
+#logoContainer {
+  padding: 1.75rem 0 1.5rem;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    transition: opacity .2s, transform .2s;
+    &:hover { opacity: .92; transform: translateY(-1px); }
+  }
+
+  img {
+    width: 320px;
+    max-width: 74%;
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+}

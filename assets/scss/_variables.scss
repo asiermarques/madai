@@ -1,0 +1,26 @@
+// ─────────────────────────────────────────────────────────────────────────
+// MadAi — design tokens (per DESIGN.md)
+// Brand blue #2a6f97 · soft #e2eef2 · Crimson Text + Open Sans
+//
+// MadAi tokens only. Bootstrap variable overrides are passed as configuration
+// in main.scss via `@use ".../bootstrap" with (...)`.
+// ─────────────────────────────────────────────────────────────────────────
+
+// ── Palette ───────────────────────────────────────────────────────────
+$madai-primary:      #2a6f97;
+$madai-primary-dark: #235d80;
+$madai-light:        #e2eef2;
+$madai-white:        #ffffff;
+$madai-bg:           #ffffff;
+$madai-surface:      #f7fafc;
+$madai-border:       #d7e3ea;
+$madai-ink:          #122a3a;
+$madai-text:         #2c3e4a;
+$madai-muted:        #5b7280;
+
+// ── Fonts ─────────────────────────────────────────────────────────────
+$heading-font: "Crimson Text", Georgia, serif;
+$body-font:    "Open Sans", Arial, sans-serif;
+
+// ── Spacing ───────────────────────────────────────────────────────────
+$base-space:   2rem;
