@@ -75,7 +75,6 @@
       color: $madai-text;
       line-height: 1.8;
       font-size: 1.05rem;
-      max-width: 66ch;
     }
   }
 
@@ -213,7 +212,7 @@
       margin-bottom: $base-space;
     }
 
-    p { line-height: 1.85; color: $madai-text; max-width: 70ch; }
+    p { line-height: 1.85; color: $madai-text; }
 
     a {
       color: $madai-primary;
