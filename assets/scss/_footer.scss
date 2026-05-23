@@ -11,7 +11,7 @@ footer {
   @media (max-width: 575.98px) {
     padding: $base-space*1.5 0;
 
-    // stacked calendar iframe + manifesto columns need an explicit gap
+    // stacked CTA + manifesto columns need an explicit gap
     .row { row-gap: $base-space; }
   }
 
@@ -40,5 +40,133 @@ footer {
   iframe {
     border: 1px solid $madai-border !important;
     border-radius: .5rem;
+  }
+
+  .footer-cta {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin-bottom: $base-space*1.5;
+    border-radius: .75rem;
+    color: #fff;
+    background:
+      radial-gradient(120% 140% at 0% 0%, $madai-primary 0%, $madai-primary-dark 70%);
+
+    // technical dot-grid texture — subtle, editorial, not noisy
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: radial-gradient(rgba(#fff, .14) 1px, transparent 1.6px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(105deg, #000 35%, transparent 78%);
+      -webkit-mask-image: linear-gradient(105deg, #000 35%, transparent 78%);
+    }
+
+    // oversized serif glyph as a quiet decorative anchor
+    &::after {
+      content: "“";
+      position: absolute;
+      top: -.35em;
+      right: .15em;
+      z-index: -1;
+      font-family: $heading-font;
+      font-size: 13rem;
+      line-height: 1;
+      color: rgba(#fff, .07);
+      pointer-events: none;
+
+      @media (max-width: 767.98px) { display: none; }
+    }
+
+    &__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: $base-space*1.5;
+      padding: $base-space*1.4 $base-space*1.5;
+
+      @media (max-width: 767.98px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $base-space*0.85;
+        padding: $base-space*1.15 $base-space*1.1;
+      }
+    }
+
+    &__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font-family: $body-font;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(#fff, .85);
+      margin-bottom: .65rem;
+
+      &::before {
+        content: "";
+        width: 1.75rem;
+        height: 2px;
+        background: rgba(#fff, .55);
+      }
+    }
+
+    &__title {
+      color: #fff;
+      font-size: clamp(1.7rem, 3.2vw, 2.35rem);
+      line-height: 1.1;
+      margin-bottom: .55rem;
+    }
+
+    &__text {
+      color: rgba(#fff, .88);
+      font-size: 1rem;
+      max-width: 60ch;
+      margin-bottom: 0;
+    }
+
+    &__btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .75rem 1.5rem;
+      border-radius: .5rem;
+      background: #fff;
+      color: $madai-primary;
+      font-family: $body-font;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba($madai-primary-dark, .35);
+      transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+
+      .footer-cta__arrow {
+        transition: transform .18s ease;
+      }
+
+      &:hover {
+        color: $madai-primary;
+        background: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba($madai-primary-dark, .45);
+
+        .footer-cta__arrow { transform: translateX(4px); }
+      }
+
+      &:focus-visible {
+        outline: 3px solid rgba(#fff, .7);
+        outline-offset: 3px;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-cta__btn,
+    .footer-cta__arrow { transition: none; }
   }
 }

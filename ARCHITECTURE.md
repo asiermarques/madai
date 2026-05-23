@@ -76,7 +76,7 @@ layouts/
     site-meta.html            # per-page <title>/description, canonical, hreflang alternates, OG/Twitter cards
     schema.html               # JSON-LD structured data (Organization+WebSite on home, Event on event pages)
     site-header.html          # logo, About link, Events link, language switcher
-    site-footer.html          # Lu.ma calendar embed + manifesto (cached)
+    site-footer.html          # "give a talk" CTA (mailto) + manifesto (cached)
   _shortcodes/
     speaker_talk.html          # renders the talk title + description
     speaker_bio.html           # renders speaker photo (resized→webp) + bio

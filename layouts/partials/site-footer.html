@@ -1,19 +1,21 @@
 <footer>
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-7">
-
-                <iframe
-                        src="https://luma.com/embed/calendar/cal-PWJrrdtGoW3wltX/events"
-                        width="100%"
-                        height="450"
-                        style="border: 1px solid #bfcbda88; border-radius: 4px;"
-                        allowfullscreen=""
-                        aria-hidden="false"
-                        tabindex="0"
-                ></iframe>
+        <div class="footer-cta">
+            <div class="footer-cta__inner">
+                <div class="footer-cta__copy">
+                    <span class="footer-cta__kicker">{{ T "cta_talk_kicker" }}</span>
+                    <h2 class="footer-cta__title">{{ T "cta_talk_title" }}</h2>
+                    <p class="footer-cta__text">{{ T "cta_talk_text" }}</p>
+                </div>
+                <a class="footer-cta__btn"
+                   href="mailto:madai.techcommunity@gmail.com?subject={{ T "cta_talk_subject" | urlquery }}">
+                    <span>{{ T "cta_talk_button" }}</span>
+                    <span class="footer-cta__arrow" aria-hidden="true">&rarr;</span>
+                </a>
             </div>
-            <div class="col-12 col-md-5">
+        </div>
+        <div class="row">
+            <div class="col-12">
                 {{ $p := printf "i18n/%s/manifesto.md" .Lang }}
                 {{ with resources.Get $p }}
                 {{ .Content | markdownify }}
