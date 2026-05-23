@@ -30,7 +30,7 @@ Ahora mismo está enfocado en construir una plataforma de IA en Docplanner mient
 * [Bluesky](https://bsky.app/profile/carloslopez.bsky.social)
 {{</speaker_bio>}}
 
----
+
 
 ##### Agenda
 
