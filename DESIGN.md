@@ -284,3 +284,7 @@ Before finishing any visual task, check:
 * Is the design clean, calm, community-oriented — depth without noise?
 
 If any answer is no, revise the design before considering the task complete.
+
+## Credits
+
+Logo design by [Ainara GM](https://www.ainaragm.es/)
