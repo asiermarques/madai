@@ -2,35 +2,40 @@
   <div class="container">
         <div class="row">
             <div class="col-7">
-                <p class="links">
-                    <a href="{{ site.Home.RelPermalink }}"
-                       class="{{ if $.IsHome }}current{{ end }}">{{ T "home" }}</a>
-                    {{ with $.Site.GetPage "/info/about" }}
-                    <a href="{{ .RelPermalink }}"
-                       class="{{ if eq $.RelPermalink .RelPermalink }}current{{ end }}">{{ T "about" }}</a>
-                    {{ end }}
-                    {{ with $.Site.GetPage "/events" }}
-                    <a href="{{ .RelPermalink }}"
-                       class="{{ if eq $.Section "events" }}current{{ end }}">{{ T "events" }}</a>
-                    {{ end }}
-                </p>
+                <nav aria-label="Main navigation">
+                    <p class="links">
+                        <a href="{{ site.Home.RelPermalink }}"
+                           class="{{ if $.IsHome }}current{{ end }}">{{ T "home" }}</a>
+                        {{ with $.Site.GetPage "/info/about" }}
+                        <a href="{{ .RelPermalink }}"
+                           class="{{ if eq $.RelPermalink .RelPermalink }}current{{ end }}">{{ T "about" }}</a>
+                        {{ end }}
+                        {{ with $.Site.GetPage "/events" }}
+                        <a href="{{ .RelPermalink }}"
+                           class="{{ if eq $.Section "events" }}current{{ end }}">{{ T "events" }}</a>
+                        {{ end }}
+                    </p>
+                </nav>
             </div>
           <div class="col-5">
-              <p class="links lang-switch">
-                  {{ range $.Site.Home.AllTranslations }}
-                  <a href="{{ .RelPermalink }}"
-                     class="{{ if eq .Lang $.Lang }}current{{ end }} lang">{{ .Language.Lang | upper }}</a>
-                  {{ end }}
-              </p>
+              <nav aria-label="Language switcher">
+                  <p class="links lang-switch">
+                      {{ range $.Site.Home.AllTranslations }}
+                      <a href="{{ .RelPermalink }}"
+                         class="{{ if eq .Lang $.Lang }}current{{ end }} lang"
+                         hreflang="{{ .Language.Lang }}"
+                         aria-label="{{ .Language.Lang | upper }}">{{ .Language.Lang | upper }}</a>
+                      {{ end }}
+                  </p>
+              </nav>
           </div>
         </div>
     </div>
     <div id="logoContainer">
         {{ with resources.Get "img/logo.svg" }}
             <a href="/">
-                <img src="{{.RelPermalink}}" alt="">
+                <img src="{{.RelPermalink}}" alt="{{ T "logo_alt" }}">
             </a>
         {{end}}
-
     </div>
 </header>

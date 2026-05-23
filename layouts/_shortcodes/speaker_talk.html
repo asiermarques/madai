@@ -3,7 +3,7 @@
 {{- $time := or (.Get "time") $.Page.Params.time }}
 
 <div class="talk">
-    <h2>{{T "talk"}}</h2>
+    <p class="talk-label">{{T "talk"}}</p>
     <h2 class="talk-title">{{ $title }}</h2>
-    <div class="talk-description">{{ .Inner| markdownify }}</div>
+    <div class="talk-description">{{ .Inner | markdownify }}</div>
 </div>

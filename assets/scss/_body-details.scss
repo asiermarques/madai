@@ -49,8 +49,8 @@
     margin-bottom: $base-space*1.5;
     display: block;
 
-    // editorial eyebrow label — scoped so it never touches .talk-title
-    > h2:not(.talk-title) {
+    // editorial eyebrow label
+    .talk-label {
       font-family: $body-font;
       font-size: .78rem;
       font-weight: 700;
