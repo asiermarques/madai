@@ -11,3 +11,7 @@ Guidance for Claude when working in this repository.
 - **Don't commit build output:** `public/` and `resources/_gen/` are gitignored; leave `.hugo_build.lock` alone.
 - Requires **Hugo extended** (the SCSS pipeline depends on it).
 - **Keep ARCHITECTURE.md up to date.** After any code change — new templates, layouts, i18n keys, content structure, shortcodes, or SCSS sections — update the relevant section of `ARCHITECTURE.md` to reflect the new state.
+
+## Design
+
+Follow the project design guidelines in @DESIGN.md whenever creating or modifying UI, visual assets, landing pages, slides, images, components, CSS, Tailwind classes, or design-related copy.

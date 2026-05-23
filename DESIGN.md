@@ -18,18 +18,6 @@ Use these instructions whenever you create or modify:
 
 Treat these rules as the default visual system unless the user explicitly asks for a different style.
 
----
-
-## How to load this file from CLAUDE.md
-
-Add this line to `CLAUDE.md`:
-
-```md
-Follow the project design guidelines in @DESIGN.md whenever creating or modifying UI, visual assets, landing pages, slides, images, components, CSS, Tailwind classes, or design-related copy.
-```
-
----
-
 ## Brand foundations
 
 ### Colors
