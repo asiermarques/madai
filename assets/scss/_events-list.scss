@@ -23,6 +23,13 @@
     height: 100%;
     margin-bottom: $base-space;
     background: $madai-white;
+
+    // Phone: single-column stack — drop the equal-height grid behavior
+    // (it leaves dead space below short cards) and add breathing room.
+    @media (max-width: 575.98px) {
+      height: auto;
+      margin-bottom: $base-space*1.6;
+    }
     border: 1px solid $madai-border;
     border-radius: .75rem;
     overflow: hidden;

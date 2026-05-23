@@ -8,6 +8,18 @@
   display: block;
   padding: $base-space*1.75 0;
 
+  // Phone: tighten the desktop-scale vertical rhythm so blocks don't
+  // drift apart and the trailing gap before the footer shrinks.
+  @media (max-width: 575.98px) {
+    padding: $base-space*1.25 0 $base-space;
+
+    .talk { margin-bottom: $base-space; }
+    // stacked photo + bio columns need an explicit gap (the image
+    // column carries no trailing margin of its own)
+    .speaker-bio { margin-top: $base-space; row-gap: $base-space; }
+    #next-event .image-container { margin-bottom: $base-space*.75; }
+  }
+
   // ── Next event (home) ───────────────────────────────────────────────
   #next-event {
     h4 {

@@ -117,4 +117,15 @@
   // so the section bg doesn't need extra height
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
   padding-bottom: 8rem; // compensate for clip
+
+  // On phones the desktop-scale vertical padding leaves a large empty
+  // blue band below the lead; tighten the rhythm.
+  @media (max-width: 575.98px) {
+    padding-top: 2.5rem;
+    padding-bottom: 4.5rem;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.5rem), 0 100%);
+
+    h1::after { margin-top: 1.5rem; }
+    .hero-lead { margin-top: 1.1rem; }
+  }
 }

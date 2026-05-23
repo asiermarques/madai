@@ -8,6 +8,13 @@ footer {
   padding: $base-space*1.75 0;
   color: $madai-text;
 
+  @media (max-width: 575.98px) {
+    padding: $base-space*1.5 0;
+
+    // stacked calendar iframe + manifesto columns need an explicit gap
+    .row { row-gap: $base-space; }
+  }
+
   h2, h3 {
     font-family: $heading-font;
     font-size: 1.35rem;
