@@ -34,20 +34,27 @@ Follow the project design guidelines in @DESIGN.md whenever creating or modifyin
 
 ### Colors
 
-Use this palette as the primary brand palette:
+The brand palette is implemented as SCSS tokens in `assets/scss/_variables.scss`. Use the token, never the raw hex.
 
-```css
---madai-primary: #2a6f97;
---madai-light: #e2eef2;
-```
+| Token | Value | Role |
+| --- | --- | --- |
+| `$madai-primary` | `#2a6f97` | Main brand color: primary actions, links, accents, dark surfaces |
+| `$madai-primary-dark` | `#235d80` | Hover/pressed states, gradient end-stops |
+| `$madai-light` | `#e2eef2` | Soft supporting surface, pills, icon chips, hover fills |
+| `$madai-white` | `#ffffff` | Cards and content surfaces |
+| `$madai-bg` | `#ffffff` | Page background |
+| `$madai-surface` | `#f7fafc` | Subtle alt surface (table headers, disabled states) |
+| `$madai-border` | `#d7e3ea` | Hairline borders on cards, tables, media |
+| `$madai-ink` | `#122a3a` | Headings and high-emphasis text |
+| `$madai-text` | `#2c3e4a` | Body text |
+| `$madai-muted` | `#5b7280` | Eyebrows, captions, metadata, secondary text |
 
 Usage:
 
-* Use `#2a6f97` as the main brand color.
-* Use `#e2eef2` as a soft background, secondary surface, subtle section background, or light accent.
-* Prefer white or very light backgrounds when readability matters.
-* Avoid introducing unrelated accent colors unless they are needed for semantic states such as success, warning, or error.
-* Do not use random blues. If a blue is needed, start from `#2a6f97`.
+* Use `$madai-primary` as the main brand color. **Do not invent other blues** — derive shades from it (e.g. `color.adjust($madai-primary, $lightness: -6%)`) so everything stays on-brand.
+* Reserve `$madai-light` for soft supporting surfaces and accents, never for primary actions.
+* Prefer white / very light backgrounds when readability matters; use `$madai-primary` as the dark surface for hero and the talk CTA banner (white text on top).
+* Only introduce new colors for semantic states (success/warning/error), not for decoration.
 
 ---
 
@@ -104,6 +111,23 @@ Do not replace `Crimson Text` headings with generic sans-serif headings unless t
 
 ---
 
+## Spacing & radius
+
+Spacing is driven by a single token, `$base-space: 2rem`, multiplied for rhythm — e.g. `$base-space*0.75`, `$base-space*1.5`, `$base-space*1.75`. Reuse these multiples rather than introducing arbitrary `px` values, so vertical rhythm stays consistent across sections.
+
+Corner radii follow a small implemented scale; pick the closest existing value rather than inventing new ones:
+
+* `.375rem` — buttons, small back-links
+* `.5rem` / `.55rem` — default cards, CTA buttons
+* `.6rem` — icon chips, nested media (maps)
+* `.75rem` — content cards, images, the talk CTA banner
+* `.9rem` — the event-info card
+* `999px` — pills (event date tags) and accent dots/dashes
+
+**Responsive rhythm:** the phone breakpoint is `575.98px` (some components also use `767.98px`). On phones, tighten the desktop-scale vertical padding and add explicit `row-gap` to stacked columns — desktop spacing leaves dead gaps on small screens.
+
+---
+
 ## Visual tone
 
 MadAI visuals should feel:
@@ -127,6 +151,17 @@ Avoid:
 * unnecessary visual noise
 
 The brand should feel like a thoughtful AI engineering community, not like a crypto landing page that found LinkedIn.
+
+### Atmosphere is allowed — when it's brand-derived and subtle
+
+"Avoid excessive gradients / decoration" does **not** mean flat solid colors everywhere. The implemented dark surfaces (hero, talk CTA banner) build quiet depth, and this is the intended house style:
+
+* **Brand gradients only.** Two-tone gradients between `$madai-primary` and a slightly darker shade of itself (via `color.adjust`) — never multi-hue or rainbow gradients.
+* **Subtle texture, masked.** A faint white dot-grid (`radial-gradient` dots at ~12–14% opacity) faded out with a diagonal `mask-image`. It should read as a whisper, not a pattern.
+* **One quiet decorative anchor per surface.** e.g. an oversized `Crimson Text` glyph at ~7% opacity behind the CTA, or soft blurred gradient "orbs" in the hero. One, not several.
+* **Restrained, brand-tinted shadows.** Lift shadows use `rgba($madai-primary / $madai-ink, …)`, not neutral black, and stay soft.
+
+The line to hold: depth and atmosphere yes; noise, neon, heavy shadows, and competing decoration no.
 
 ---
 
@@ -159,43 +194,39 @@ For landing pages or event pages:
 
 ### Buttons
 
-Primary buttons:
+Primary buttons: `$madai-primary` background, white text, `Open Sans` 600–700, radius `.375–.55rem` (slightly rounded, not pill). On hover, deepen to `$madai-primary-dark`, lift `translateY(-2px)`, and grow a soft brand-tinted shadow.
 
-* background: `#2a6f97`
-* text: white
-* typography: `Open Sans`
-* shape: slightly rounded, not overly pill-shaped unless the existing UI already uses that style
+Inverted button (on a dark/brand surface, e.g. the CTA banner): white background, `$madai-primary` text. Pair with a `→` arrow that slides `translateX(4px)` on hover.
 
-Secondary buttons:
+Secondary / utility (e.g. the back-link): transparent or white, `$madai-border`, muted text; on hover adopt `$madai-primary` border + `$madai-light` fill.
 
-* background: white or transparent
-* border: `#2a6f97`
-* text: `#2a6f97`
+Disabled: `$madai-surface` background, `$madai-border`, `$madai-muted` text, no shadow, `cursor: not-allowed`.
 
-Avoid:
+Avoid: random accent colors, heavy shadows, oversized pills.
 
-* random accent colors
-* excessive shadows
-* oversized pill buttons unless already part of the existing design system
+### Editorial eyebrow / kicker
+
+A recurring signature: a short uppercase label above a heading.
+
+* `Open Sans`, 700, `font-size` ~`.72–.8rem`, `letter-spacing` `.09em–.18em`, `text-transform: uppercase`.
+* Color `$madai-muted` on light surfaces, `rgba(#fff,.85)` on brand surfaces.
+* Accompanied by a small accent: a `999px` dot with a soft brand halo (`box-shadow: 0 0 0 4px rgba($madai-primary,.16)`), or a short `2px` dash before the text.
+
+Use it for "Latest event", talk labels, the CTA kicker, and table headers — it carries the technical-but-editorial voice.
 
 ### Cards
 
-Cards should be simple and readable.
+Cards are white, with a `$madai-border` hairline and a radius from the scale (`.75rem` content cards, `.9rem` the event-info card). Shadows are optional, soft, and brand-tinted.
 
-Prefer:
+* **Event card (list):** image header + body; on hover lift `translateY(-4px)`, border turns `$madai-primary`, soft `rgba($madai-primary,.14)` shadow, image scales `1.03`, title turns brand color.
+* **Event-info card:** icon-chip list (`$madai-light` rounded chips), bordered map, full-width primary CTA.
+* **Talk CTA banner:** the one intentionally bold surface — brand gradient + masked dot-grid + faint serif glyph (see *Atmosphere* above). It lives **inside `.container`** (not full-bleed) so it keeps page margins on every breakpoint and aligns with the content around it.
 
-* white background
-* subtle border
-* optional light background sections using `#e2eef2`
-* minimal shadow
-* clear spacing
+Avoid heavy shadows, saturated/noisy backgrounds, and too many competing card styles.
 
-Avoid:
+### Tables (agenda style)
 
-* heavy shadows
-* saturated backgrounds
-* noisy decorative patterns
-* too many competing card styles
+Agenda/schedule tables use a left brand rule (`border-left: 3px solid $madai-primary`), uppercase muted `th`, a first column treated as a timestamp/label (brand color, `tabular-nums`, fixed ~`5.5rem` width), and a hairline separator before the second column. Rows hover with a faint `rgba($madai-primary,.04)` tint. Empty header rows are hidden with `thead tr:has(th:empty) { display:none }`.
 
 ### Links
 
@@ -226,36 +257,27 @@ Before finalizing UI changes:
 
 ---
 
+## Motion
+
+Motion is calm and purposeful — it supports hierarchy, it doesn't decorate.
+
+* **Page-load reveals:** staggered fade-up (`opacity` + `translateY`) on the hero headline and lead via `animation-delay` (e.g. `.3s`, `.45s`); the nav fades in from the top. One orchestrated entrance per page beats scattered micro-animations.
+* **Ambient:** only the hero's blurred gradient orbs drift slowly (14–18s `ease-in-out infinite`). Keep ambient motion rare and slow.
+* **Hover micro-interactions:** lift (`translateY(-2px…-4px)`), border/color shift to brand, soft brand-tinted shadow, the CTA arrow slide, the nav underline growing from the left. Durations `.15s–.22s`, `ease`.
+* **Accessibility:** always respect `@media (prefers-reduced-motion: reduce)` and disable transitions/animations there. Keep visible `:focus-visible` outlines (2–3px brand or white).
+
+---
+
 ## Implementation guidance
 
-When working with CSS, define reusable tokens instead of scattering raw values:
+This is a **Hugo** site styled with **SCSS compiled through Bootstrap** — there is no Tailwind, no React, no CSS custom properties. Work within the existing token system:
 
-```css
-:root {
-  --madai-primary: #2a6f97;
-  --madai-light: #e2eef2;
-  --madai-heading-font: "Crimson Text", Georgia, serif;
-  --madai-body-font: "Open Sans", Arial, sans-serif;
-}
-```
-
-When working with Tailwind, prefer project-level theme tokens if available.
-
-If there is no theme configuration yet, use the exact hex values directly but avoid multiplying near-duplicates.
-
-Example:
-
-```tsx
-<h1 className="font-serif text-4xl font-bold text-[#2a6f97]">
-  MadAI
-</h1>
-
-<p className="font-sans text-base">
-  Community-driven conversations about AI engineering.
-</p>
-```
-
-Only add font-loading code if the project does not already load fonts.
+* **Tokens live in `assets/scss/_variables.scss`** (`$madai-*` colors, `$base-space`, fonts). Reference these SCSS variables — never paste raw hex or arbitrary spacing.
+* **Bootstrap is configured, not overridden after the fact.** `assets/scss/main.scss` passes brand tokens into Bootstrap via `@use "bootstrap" with (...)` (primary, link colors, radii, button settings, font families). Change Bootstrap behavior there, not by fighting it downstream.
+* **Each UI region is its own partial** (`_hero.scss`, `_header.scss`, `_events-list.scss`, `_body-details.scss`, `_footer.scss`), wired up in `main.scss`. Add new components as a partial and `@use "variables" as *` at the top. Use BEM-style names (`block__element`).
+* **Never edit `vendor/bootstrap/`.** All customization goes through `main.scss` / partials.
+* **Derive shades in SCSS** with `@use "sass:color"` + `color.adjust(...)` rather than hardcoding new hex values.
+* Requires **Hugo extended** (the SCSS pipeline depends on it). Fonts are already loaded — don't add font-loading code.
 
 ---
 
@@ -263,13 +285,14 @@ Only add font-loading code if the project does not already load fonts.
 
 Before finishing any visual task, check:
 
-* Are headings using `Crimson Text`?
-* Are body and UI elements using `Open Sans`?
-* Is `#2a6f97` the main brand color?
-* Is `#e2eef2` used only as a soft supporting color?
-* Is the design clean, calm, and community-oriented?
-* Is the layout readable on small screens?
-* Is the contrast acceptable?
-* Have unnecessary colors, shadows, gradients, or decorative elements been avoided?
+* Are headings using `Crimson Text` and body/UI using `Open Sans`?
+* Are you using `$madai-*` tokens and `$base-space` multiples — no raw hex or arbitrary `px`?
+* Is `$madai-primary` the main brand color, with `$madai-light` only as soft support?
+* Are gradients/textures brand-derived and subtle (not multi-hue, neon, or noisy)?
+* Are radii from the implemented scale, not new values?
+* Did you change Bootstrap config in `main.scss` rather than editing `vendor/`?
+* Is the layout readable on small screens, with phone vertical rhythm tightened at `575.98px`?
+* Is contrast acceptable, with visible focus states and `prefers-reduced-motion` respected?
+* Is the design clean, calm, community-oriented — depth without noise?
 
 If any answer is no, revise the design before considering the task complete.
