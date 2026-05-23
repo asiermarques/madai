@@ -29,6 +29,7 @@ There is **no Node/npm toolchain, no package manager, and no JS framework**. The
 - `baseURL = "https://madai.es"`.
 - **Multilingual:** default language `es` (no subdir), secondary `en`. Both enabled. Language is selected per content file via the `*.es.md` / `*.en.md` filename suffix convention.
 - Markup handler: Goldmark.
+- **Output formats:** the home page emits `html` + a custom `llms` plain-text format (`[outputFormats.llms]`, `mediaType = text/plain`, `baseName = llms`) → renders `/llms.txt` (and `/en/llms.txt`) from `layouts/index.llms.txt`, a machine-readable site summary for LLM agents that auto-lists events.
 
 ## Content organization (`content/`)
 
@@ -72,7 +73,8 @@ layouts/
     list.html                 # events list page: responsive card grid, sorted by date desc
   partials/
     site-style.html           # fonts + SCSS→CSS pipeline (+ "styles" block)
-    site-meta.html            # <title>, description, favicons, OG/Twitter cards
+    site-meta.html            # per-page <title>/description, canonical, hreflang alternates, OG/Twitter cards
+    schema.html               # JSON-LD structured data (Organization+WebSite on home, Event on event pages)
     site-header.html          # logo, About link, Events link, language switcher
     site-footer.html          # Lu.ma calendar embed + manifesto (cached)
   _shortcodes/
@@ -82,7 +84,9 @@ layouts/
 
 Notable template behavior:
 
-- **`baseof.html`** composes the page from `header` / `main` / `footer` blocks. Footer uses `partialCached` since it's identical across pages.
+- **`baseof.html`** composes the page from `header` / `main` / `footer` blocks, and includes `site-style`, `site-meta`, and `schema` partials in `<head>`. Footer uses `partialCached` since it's identical across pages.
+- **`site-meta.html`** is SEO-aware: per-page `<title>` (`Page title | MadAI`, site title on home), `<meta description>` from the page's `description` front matter (falling back to the `meta_description` i18n string), `<link rel="canonical">`, and `<link rel="alternate" hreflang>` for each translation plus an `x-default` pointing at the home page.
+- **`schema.html`** emits JSON-LD built as Go maps and serialized with `jsonify | safeJS` (the `safeJS` is required — `html/template` otherwise re-escapes `<script type="application/ld+json">` content as a JS string). Home pages get `Organization` + `WebSite`; event pages (`.Type == "event"`) get an `Event` whose `startDate` is parsed from the `day` (`DD.MM.YYYY`) + `time` front matter (not the `date` field), with `location` (Madrid), `performer` (speaker), `organizer` (MadAI), and a free `Offer` when `ticketsUrl` is set.
 - **`index.html`** picks the next event with `first 1 (where site.RegularPages "Section" "events").ByDate` and renders its card (date/time/location, map iframe, Lu.ma CTA or disabled fallback).
 - **`events/list.html`** renders all events sorted newest-first (`sort .RegularPages "Date" "desc"`) as a responsive Bootstrap grid of cards. Each card shows the speaker image (if present), date, talk title, speaker name, and tagline.
 - **`speaker-detail.html`** includes a "back to events" link pointing to the events section index (`site.GetPage "/events"`).
@@ -94,7 +98,7 @@ Notable template behavior:
 
 Three complementary mechanisms:
 
-1. **UI strings** — `i18n/es.toml` and `i18n/en.toml`, looked up in templates via `{{ T "key" }}` (e.g. `next_event`, `join_cta`, `meta_title`, `talk`, `talk_title_pending`). `about_speaker` uses a `%s` placeholder filled with the speaker name.
+1. **UI strings** — `i18n/es.toml` and `i18n/en.toml`, looked up in templates via `{{ T "key" }}` (e.g. `latest_event`, `join_cta`, `meta_title`, `meta_description`, `home_h1`, `home_lead`, `talk`, `talk_title_pending`). `about_speaker` uses a `%s` placeholder filled with the speaker name. The home hero `h1` (`home_h1`, keyword-focused) and lead paragraph (`home_lead`) are kept separate from the `meta_description` so the page heading and the meta tag can be optimized independently.
 2. **Page content** — per-language Markdown files (`*.es.md` / `*.en.md`).
 3. **Manifesto block** — `assets/i18n/{lang}/manifesto.md` is loaded by the footer via `resources.Get` and `markdownify`, keyed on `.Lang`.
 
@@ -109,7 +113,7 @@ Three complementary mechanisms:
 ## Static assets
 
 - `assets/` — pipeline-processed assets (SCSS, images that get fingerprinted/resized, logo SVG, share image, speaker photos, i18n manifesto markdown).
-- `static/` — copied verbatim to site root: favicons/PWA icons under `static/img/icon/`, `browserconfig.xml`, `site.webmanifest`.
+- `static/` — copied verbatim to site root: favicons/PWA icons under `static/img/icon/`, `browserconfig.xml`, `site.webmanifest`, and `robots.txt` (allows all, points crawlers at `https://madai.es/sitemap.xml`).
 - `resources/` — Hugo's generated asset cache (`_gen`), gitignored.
 
 ## Conventions & notes

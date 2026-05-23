@@ -102,6 +102,16 @@
     }
   }
 
+  // ── Lead / subtitle ───────────────────────────────────────────────
+  .hero-lead {
+    max-width: 680px;
+    margin: 1.5rem auto 0;
+    color: rgba($madai-white, .9);
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.65;
+    animation: heroTextIn .65s .45s ease both;
+  }
+
   // ── Diagonal bottom edge — hero bleeds into the content below
   // Achieved by a pseudo element that "fills" the clipped corner
   // so the section bg doesn't need extra height

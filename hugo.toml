@@ -15,3 +15,12 @@ defaultContentLanguageInSubdir = false
       weight = 2
 [markup]
     defaultMarkdownHandler = 'goldmark'
+
+[outputs]
+    home = ['html', 'llms']
+
+[outputFormats.llms]
+    mediaType = 'text/plain'
+    baseName = 'llms'
+    isPlainText = true
+    notAlternative = true

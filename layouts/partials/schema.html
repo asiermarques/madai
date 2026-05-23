@@ -1,0 +1,67 @@
+{{- /* Structured data (JSON-LD) — built as maps and serialized with jsonify for safe escaping. */ -}}
+{{- $home := .Site.Home.Permalink -}}
+{{- $logo := "" -}}
+{{- with resources.Get "img/logo.svg" }}{{ $logo = .Permalink }}{{ end -}}
+
+{{- if .IsHome -}}
+{{- $org := dict
+  "@context" "https://schema.org"
+  "@type" "Organization"
+  "name" "MadAI"
+  "url" $home
+  "description" (T "meta_description")
+  "areaServed" (dict "@type" "City" "name" "Madrid")
+  "sameAs" (slice "https://luma.com/madai")
+-}}
+{{- if $logo }}{{ $org = merge $org (dict "logo" $logo) }}{{ end -}}
+<script type="application/ld+json">
+{{ jsonify $org | safeJS }}
+</script>
+{{- $web := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" "MadAI"
+  "url" $home
+  "inLanguage" .Lang
+-}}
+<script type="application/ld+json">
+{{ jsonify $web | safeJS }}
+</script>
+{{- end -}}
+
+{{- if eq .Type "event" -}}
+{{- $parts := split .Params.day "." -}}
+{{- $time := replaceRE "[^0-9:]" "" (string .Params.time) -}}
+{{- $start := "" -}}
+{{- if and (eq (len $parts) 3) $time -}}
+  {{- $start = printf "%s-%s-%sT%s:00" (index $parts 2) (index $parts 1) (index $parts 0) $time -}}
+{{- end -}}
+{{- $img := "" -}}
+{{- with resources.Get .Params.image }}{{ $img = .Permalink }}{{ end -}}
+{{- $event := dict
+  "@context" "https://schema.org"
+  "@type" "Event"
+  "name" .Title
+  "description" .Params.description
+  "url" .Permalink
+  "eventStatus" "https://schema.org/EventScheduled"
+  "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
+  "location" (dict
+    "@type" "Place"
+    "name" .Params.where
+    "address" (dict "@type" "PostalAddress" "addressLocality" "Madrid" "addressCountry" "ES"))
+  "performer" (dict "@type" "Person" "name" .Params.speaker)
+  "organizer" (dict "@type" "Organization" "name" "MadAI" "url" $home)
+-}}
+{{- if $start }}{{ $event = merge $event (dict "startDate" $start) }}{{ end -}}
+{{- if $img }}{{ $event = merge $event (dict "image" $img) }}{{ end -}}
+{{- with .Params.ticketsUrl }}{{ $event = merge $event (dict "offers" (dict
+  "@type" "Offer"
+  "url" .
+  "price" "0"
+  "priceCurrency" "EUR"
+  "availability" "https://schema.org/InStock")) }}{{ end -}}
+<script type="application/ld+json">
+{{ jsonify $event | safeJS }}
+</script>
+{{- end -}}

@@ -1,0 +1,15 @@
+# MadAI — {{ T "home_h1" }}
+
+> {{ T "meta_description" }}
+
+{{ T "home_lead" }}
+
+## {{ T "events" }}
+
+{{ with .Site.GetPage "/events" }}- [{{ .Title }}]({{ .Permalink }})
+{{ end }}{{ range (where .Site.RegularPages "Section" "events") }}- [{{ .Title }}]({{ .Permalink }}) — {{ .Params.speaker }}{{ with .Params.tagline }}, {{ . }}{{ end }} · {{ .Params.day }}{{ with .Params.description }} — {{ . }}{{ end }}
+{{ end }}
+## {{ T "about" }}
+
+{{ with .Site.GetPage "/info/about" }}- [{{ .Title }}]({{ .Permalink }})
+{{ end }}- [Lu.ma](https://luma.com/madai) — {{ T "latest_event" }} / {{ T "events" }}
