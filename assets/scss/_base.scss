@@ -53,6 +53,32 @@ a.btn {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+// Skip link — first focusable element; hidden until keyboard focus, then
+// pinned to the top-left over the dark header (white-on-brand for contrast).
+// ─────────────────────────────────────────────────────────────────────────
+.skip-link {
+  position: absolute;
+  left: $base-space*0.5;
+  top: -100%;
+  z-index: 1000;
+  padding: .6rem 1rem;
+  font-family: $body-font;
+  font-size: .85rem;
+  font-weight: 700;
+  color: $madai-white;
+  background: $madai-primary;
+  border-radius: .375rem;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba($madai-ink, .25);
+
+  &:focus,
+  &:focus-visible {
+    top: $base-space*0.5;
+    color: $madai-white;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 // Back link
 // ─────────────────────────────────────────────────────────────────────────
 a.back {
