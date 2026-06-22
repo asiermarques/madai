@@ -282,7 +282,9 @@
     // editorial content links — exclude `.btn` so the event-info CTA
     // keeps its own (white-on-brand) styling instead of inheriting the
     // brand-blue link colour (which would be invisible on the blue button)
-    a:not(.btn) {
+    // exclude `.btn` (event-info CTA, white-on-brand) and
+    // `.speaker-social__link` (icon chips own their hover colour)
+    a:not(.btn):not(.speaker-social__link) {
       color: $madai-primary;
       text-decoration: underline;
       text-underline-offset: 3px;

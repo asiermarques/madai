@@ -13,6 +13,10 @@ map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.06100241481!2d
 ticketsUrl = 'https://luma.com/qlytpev6'
 description = 'Asier Marqués en MadAI - Engineering Manager at BestSecret Group'
 image = 'img/speakers/asier.jpg'
+
+[social]
+linkedin = 'https://www.linkedin.com/in/asier/'
+bluesky = 'https://bsky.app/profile/asiermarques.com'
 +++
 
 {{<speaker_talk title="Diseñando flujos de desarrollo con IA: qué building blocks importan y cómo llevarlos al equipo">}}
@@ -27,10 +31,7 @@ La IA ya no es sólo una herramienta aislada o un asistente bajo demanda dentro 
 
 Llevo cerca de dos décadas liderando equipos y proyectos en el mundo tecnológico, combinando la gestión de personas con la estrategia tecnológica.
 
-A lo largo de mi carrera he fundado varias empresas tecnológicas y he formado parte de compañías internacionales, asumiendo distintos roles de liderazgo, gestión y dirección en áreas de ingeniería de software.  
-
-* [Linkedin](https://www.linkedin.com/in/asier/)
-* [Bluesky](https://bsky.app/profile/asiermarques.com)
+A lo largo de mi carrera he fundado varias empresas tecnológicas y he formado parte de compañías internacionales, asumiendo distintos roles de liderazgo, gestión y dirección en áreas de ingeniería de software.
 {{</speaker_bio>}}
 
 

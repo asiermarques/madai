@@ -13,6 +13,10 @@ map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.06100241481!2d
 ticketsUrl = 'https://luma.com/ksurg4pr'
 description = 'Carlos López en MadAI - Staff Platform Engineer en DocPlanner'
 image = 'img/speakers/carlos.jpg'
+
+[social]
+linkedin = 'https://www.linkedin.com/in/carlos-lopez-vecino/'
+bluesky = 'https://bsky.app/profile/carloslopez.bsky.social'
 +++
 
 {{<speaker_talk title="No time to whisper: lecciones aprendidas escalando un sistema GPU-powered AI para la transcripción de visitas médicas">}}
@@ -25,9 +29,6 @@ Repasaremos los retos reales a los que nos enfrentamos: desplegar y operar model
 Carlos López Vecino es un ingeniero de plataforma con más de diez años de experiencia.  
 
 Ahora mismo está enfocado en construir una plataforma de IA en Docplanner mientras ayuda a los equipos de producto a integrar IA en sus aplicaciones.
-
-* [Linkedin](https://www.linkedin.com/in/carlos-lopez-vecino/)
-* [Bluesky](https://bsky.app/profile/carloslopez.bsky.social)
 {{</speaker_bio>}}
 
 

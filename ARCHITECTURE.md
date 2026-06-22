@@ -57,6 +57,7 @@ Events live in section `events` and carry the data the home page and speaker pag
 - `map` — Google Maps embed URL (rendered in an `<iframe>`)
 - `ticketsUrl` — Lu.ma ticket link; when absent the CTA renders disabled (`join_cta_pending`)
 - `date` — drives ordering; the home page selects the next event by `.ByDate`
+- `[social]` — optional table of the speaker's links (`linkedin`, `github`, `website`, `x`, `bluesky`); each present key renders a brand-icon chip under the bio (see `speaker_bio.html`)
 
 Event bodies use two custom shortcodes (see below) plus freeform Markdown (e.g. an agenda table).
 
@@ -79,7 +80,7 @@ layouts/
     site-footer.html          # "give a talk" CTA (mailto) + manifesto (cached)
   _shortcodes/
     speaker_talk.html          # renders the talk title + description
-    speaker_bio.html           # renders speaker photo (resized→webp) + bio
+    speaker_bio.html           # renders speaker photo (resized→webp) + bio + social brand-icon chips
 ```
 
 Notable template behavior:
@@ -90,7 +91,7 @@ Notable template behavior:
 - **`index.html`** picks the next event with `first 1 (where site.RegularPages "Section" "events").ByDate` and renders its card (date/time/location, map iframe, Lu.ma CTA or disabled fallback).
 - **`events/list.html`** renders all events sorted newest-first (`sort .RegularPages "Date" "desc"`) as a responsive Bootstrap grid of cards. Each card shows the speaker image (if present), date, talk title, speaker name, and tagline.
 - **`speaker-detail.html`** includes a "back to events" link pointing to the events section index (`site.GetPage "/events"`), and lays the page out in two columns (`.event-detail`): the talk/bio/agenda `.Content` and a location + registration `.event-info` aside (same card as the home `#next-event`, with an `event_info_kicker` eyebrow). The aside is `position: sticky` on desktop and, on phones, follows the event content (same order as the home `#next-event`). Date, location, map and the CTA each render only when their front-matter param is present (`ticketsUrl` absent → disabled `join_cta_pending` CTA).
-- **`speaker_bio.html`** uses Hugo image processing: `resources.Get` + `.Resize` to emit a `webp q70 lanczos` image, rendered as a responsive `<img class="speaker-photo">` (full image, `width:100%`/`height:auto`, never cropped). The image path is passed via the `image` shortcode parameter.
+- **`speaker_bio.html`** uses Hugo image processing: `resources.Get` + `.Resize` to emit a `webp q70 lanczos` image, rendered as a responsive `<img class="speaker-photo">` (full image, `width:100%`/`height:auto`, never cropped). The image path is passed via the `image` shortcode parameter. Below the bio it renders the speaker's social links from the page's `[social]` front-matter table: a fixed network order (LinkedIn, GitHub, website, X, Bluesky), each present key emitting a `.speaker-social__link` chip with an inline brand SVG (coloured via `currentColor`). Styling lives in `_speaker-social.scss`; labels use the `social_aria` / `social_website` i18n strings.
 - **Header navigation** (`site-header.html`) links Home / About / Events; each gets a `current` class for the active section (`.IsHome`, RelPermalink match for About, `Section == "events"` for Events), rendered as an underline indicator.
 - **Language switcher** (`site-header.html`) iterates `Site.Home.AllTranslations`, marking the active language `current`. It is rendered as plain `ES` / `EN` text links (`.lang-switch`) styled to match the nav, not as pills. The events link is resolved via `site.GetPage "/events"` (Hugo resolves the permalink per active language).
 

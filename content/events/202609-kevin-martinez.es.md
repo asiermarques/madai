@@ -13,6 +13,9 @@ map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.06100241481!2d
 ticketsUrl = 'https://luma.com/mq1ffwe1'
 description = 'Kevin Martínez en MadAI - Software Architect en Orbitant'
 image = 'img/speakers/kevin.jpeg'
+
+[social]
+linkedin = 'https://www.linkedin.com/in/kevinjmartinez/'
 +++
 
 {{<speaker_talk title="Cómo evitar que tu agente de IA amplifique la deuda técnica de tu equipo">}}
@@ -23,8 +26,6 @@ La IA solo amplifica lo que tu equipo ya hace. Sin un proceso claro, lo único q
 
 {{<speaker_bio title="Kevin Martínez" tagline="Software Architect en Orbitant" image="img/speakers/kevin.jpeg">}}
 Software Architect en Orbitant.
-
-* [Linkedin](https://www.linkedin.com/in/kevinjmartinez/)
 {{</speaker_bio>}}
   
   

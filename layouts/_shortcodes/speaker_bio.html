@@ -1,6 +1,25 @@
 {{- $title := or (.Get "title") T "talk_title_pending" }}
 {{- $tagline := or (.Get "tagline") T "talk_title_pending" }}
 {{- $image := or (.Get "image") "" }}
+{{- $social := .Page.Params.social }}
+
+{{- /* Brand glyphs for the speaker's social links. Inline SVGs use
+       `currentColor` so the chips inherit the brand tokens on hover.
+       Each entry: the param key + its accessible label. */ -}}
+{{- $networks := slice
+      (dict "key" "linkedin" "label" "LinkedIn")
+      (dict "key" "github"   "label" "GitHub")
+      (dict "key" "website"  "label" (T "social_website"))
+      (dict "key" "x"        "label" "X")
+      (dict "key" "bluesky"  "label" "Bluesky")
+}}
+{{- $icons := dict
+  "linkedin" `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.51C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.74C24 .78 23.2 0 22.22 0z"/></svg>`
+  "github" `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>`
+  "website" `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.5 2.6 3.9 6 3.9 9.5s-1.4 6.9-3.9 9.5c-2.5-2.6-3.9-6-3.9-9.5s1.4-6.9 3.9-9.5z"/></svg>`
+  "x" `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.86 21.75h-6.66l-5.21-6.82-5.97 6.82H1.71l7.73-8.84L1.14 2.25h6.83l4.71 6.23 5.56-6.23zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64z"/></svg>`
+  "bluesky" `<svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M5.2 3.1C7.9 5.1 10.7 9.2 12 11.4c1.3-2.2 4.1-6.3 6.8-8.3 1.9-1.4 5.1-2.5 5.1 1.2 0 .7-.4 6.2-.7 7.1-.9 3-3.9 3.8-6.6 3.3 4.7.8 5.9 3.5 3.3 6.1-4.9 5-7-1.2-7.6-2.8l-.3-.7-.3.7c-.5 1.6-2.7 7.8-7.6 2.8-2.6-2.6-1.4-5.3 3.3-6.1-2.7.5-5.7-.3-6.6-3.3-.3-.9-.7-6.4-.7-7.1 0-3.7 3.2-2.6 5.1-1.2z"/></svg>`
+}}
 
 <div class="row speaker-bio">
     <div class="col-12 col-lg-5 speaker-image">
@@ -14,5 +33,19 @@
         <h3>{{ printf (T "about_speaker") $title }}</h3>
         <p>{{ $tagline }}</p>
         <p>{{ .Inner | markdownify }}</p>
+        {{ with $social }}
+        <ul class="speaker-social" aria-label="{{ T "social_aria" }}">
+            {{ range $networks }}
+            {{ $key := .key }}{{ $label := .label }}
+            {{ with index $social $key }}
+            <li>
+                <a class="speaker-social__link" href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $title }} · {{ $label }}" title="{{ $title }} · {{ $label }}">
+                    {{ index $icons $key | safeHTML }}
+                </a>
+            </li>
+            {{ end }}
+            {{ end }}
+        </ul>
+        {{ end }}
     </div>
 </div>

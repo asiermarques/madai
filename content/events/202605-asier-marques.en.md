@@ -13,6 +13,10 @@ map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.06100241481!2d
 ticketsUrl = 'https://luma.com/qlytpev6'
 description = 'Asier Marqués at MadAI - Engineering Manager at BestSecret Group'
 image = 'img/speakers/asier.jpg'
+
+[social]
+linkedin = 'https://www.linkedin.com/in/asier/'
+bluesky = 'https://bsky.app/profile/asiermarques.com'
 +++
 
 {{<speaker_talk title="Designing AI Development Workflows: What building blocks matter and how to bring them to the team">}}
@@ -26,10 +30,7 @@ In this session, we will explore which building blocks usually matter most when 
 {{<speaker_bio title="Asier Marqués" tagline="Engineering Manager at BestSecret Group" image="img/speakers/asier.jpg">}}
 For nearly two decades, I have been leading teams and projects in the tech industry, combining people management with technology strategy.
 
-Throughout my career, I have founded several tech companies and been part of international organizations, taking on different leadership and management roles in software engineering. 
-
-* [Linkedin](https://www.linkedin.com/in/asier/)
-* [Bluesky](https://bsky.app/profile/asiermarques.com)
+Throughout my career, I have founded several tech companies and been part of international organizations, taking on different leadership and management roles in software engineering.
 {{</speaker_bio>}}
 
 ##### Agenda

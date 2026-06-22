@@ -1,0 +1,53 @@
+@use "variables" as *;
+
+// ─────────────────────────────────────────────────────────────────────────
+// Speaker social links — brand-icon chips under the bio
+// Reuses the icon-chip pattern: soft `$madai-light` chip that fills with
+// `$madai-primary` on hover, lifting slightly. Brand glyphs are inline SVGs
+// coloured via `currentColor`, so they invert to white on the brand fill.
+// ─────────────────────────────────────────────────────────────────────────
+.speaker-social {
+  list-style: none;
+  margin: $base-space*0.5 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: .6rem;
+    background: $madai-light;
+    border: 1px solid $madai-border;
+    color: $madai-primary;
+    text-decoration: none;
+    transition: background .18s, color .18s, border-color .18s,
+                box-shadow .2s, transform .18s;
+
+    svg { display: block; }
+
+    &:hover {
+      background: $madai-primary;
+      border-color: $madai-primary;
+      color: $madai-white;
+      box-shadow: 0 6px 16px rgba($madai-primary, .28);
+      transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $madai-primary;
+      outline-offset: 2px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .speaker-social__link {
+    transition: none;
+    &:hover { transform: none; }
+  }
+}

@@ -13,6 +13,9 @@ map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.06100241481!2d
 ticketsUrl = 'https://luma.com/mq1ffwe1'
 description = 'Kevin Martínez at MadAI - Software Architect at Orbitant'
 image = 'img/speakers/kevin.jpeg'
+
+[social]
+linkedin = 'https://www.linkedin.com/in/kevinjmartinez/'
 +++
 
 {{<speaker_talk title="How to stop your AI agent from amplifying your team's tech debt">}}
@@ -23,8 +26,6 @@ What makes it different? It comes from months of learning on real frontend proje
 
 {{<speaker_bio title="Kevin Martínez" tagline="Software Architect at Orbitant" image="img/speakers/kevin.jpeg">}}
 Software Architect at Orbitant.
-
-* [Linkedin](https://www.linkedin.com/in/kevinjmartinez/)
 {{</speaker_bio>}}
   
 
