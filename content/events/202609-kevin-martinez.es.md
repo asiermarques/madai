@@ -25,7 +25,7 @@ La IA solo amplifica lo que tu equipo ya hace. Sin un proceso claro, lo único q
 {{</speaker_talk>}}
 
 {{<speaker_bio title="Kevin Martínez" tagline="Software Architect en Orbitant" image="img/speakers/kevin.jpeg">}}
-Software Architect en Orbitant.
+Software Architect y maintainer de TWD (testing while developing), una metodología de pruebas diseñada para replantear cómo se validan las interfaces durante el proceso de desarrollo. Cuenta con una profunda pasión por compartir conocimiento, el testing y la accesibilidad.
 {{</speaker_bio>}}
   
   
