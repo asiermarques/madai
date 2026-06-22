@@ -10,6 +10,7 @@ day = '17.09.2026'
 time = '18:50h'
 where = 'Puerta de innovación, Madrid'
 map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.06100241481!2d-3.7140335870457317!3d40.40749937132206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42277bae117a99%3A0x8b6111f0b83fbfbc!2sPuerta%20Innovaci%C3%B3n!5e0!3m2!1ses!2ses!4v1765662965334!5m2!1ses!2ses'
+ticketsUrl = 'https://luma.com/mq1ffwe1'
 description = 'Kevin Martínez at MadAI - Software Architect at Orbitant'
 image = 'img/speakers/kevin.jpeg'
 +++
