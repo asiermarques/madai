@@ -25,7 +25,7 @@ What makes it different? It comes from months of learning on real frontend proje
 {{</speaker_talk>}}
 
 {{<speaker_bio title="Kevin Martínez" tagline="Software Architect at Orbitant" image="img/speakers/kevin.jpeg">}}
-Software Architect and maintainer of TWD (testing while developing), a testing methodology designed to rethink how interfaces are validated during the development process. He has a deep passion for sharing knowledge, testing, and accessibility.
+Software Architect and maintainer of [TWD](https://twd.dev/) (testing while developing), a testing methodology designed to rethink how interfaces are validated during the development process. He has a deep passion for sharing knowledge, testing, and accessibility.
 {{</speaker_bio>}}
   
 
