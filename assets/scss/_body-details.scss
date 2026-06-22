@@ -102,6 +102,29 @@
       padding: 1.5rem;
     }
 
+    // editorial eyebrow — only present on the event-detail aside
+    &__kicker {
+      font-family: $body-font;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: $madai-muted;
+      margin: 0 0 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+
+      &::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: $madai-primary;
+        box-shadow: 0 0 0 4px rgba($madai-primary, .16);
+      }
+    }
+
     &__list {
       list-style: none;
       margin: 0 0 1.25rem;
@@ -179,6 +202,35 @@
     }
   }
 
+  // ── Event detail layout (content + sticky info/registration aside) ───
+  .event-detail {
+    margin-top: $base-space*.5;
+
+    // first content block sheds its top margin so it aligns with the
+    // top of the sticky aside on desktop
+    &__content > :first-child { margin-top: 0; }
+
+    &__aside {
+      // On desktop the location + registration card follows the page as
+      // the reader scrolls through the talk, bio and agenda.
+      @media (min-width: 992px) {
+        align-self: flex-start;
+        position: sticky;
+        top: $base-space;
+      }
+    }
+
+    // On phones the card follows the event content (same order as the
+    // home `#next-event`), so it needs a top gap to separate from it.
+    @media (max-width: 991.98px) {
+      .event-detail__aside { margin-top: $base-space; }
+    }
+
+    @media (max-width: 575.98px) {
+      .event-detail__aside { margin-top: $base-space*.75; }
+    }
+  }
+
   // ── Speaker bio shortcode ────────────────────────────────────────────
   .speaker-bio {
     margin-top: $base-space*1.5;
@@ -227,7 +279,10 @@
 
     p { line-height: 1.85; color: $madai-text; }
 
-    a {
+    // editorial content links — exclude `.btn` so the event-info CTA
+    // keeps its own (white-on-brand) styling instead of inheriting the
+    // brand-blue link colour (which would be invisible on the blue button)
+    a:not(.btn) {
       color: $madai-primary;
       text-decoration: underline;
       text-underline-offset: 3px;

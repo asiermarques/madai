@@ -5,10 +5,47 @@
             {{ with site.GetPage "/events" }}
             <a href="{{ .RelPermalink }}" class="back">← {{ T "events_back" }}</a>
             {{ end }}
-            <div class="row">
-                <div class="col-12 col-md-8 offset-md-2">
-                    {{.Content}}
+            <div class="row event-detail">
+                <div class="col-12 col-lg-7 event-detail__content">
+                    {{ .Content }}
                 </div>
+                <aside class="col-12 col-lg-4 offset-lg-1 event-detail__aside">
+                    <div class="card event-info">
+                        <div class="card-body">
+                            <p class="event-info__kicker">{{ T "event_info_kicker" }}</p>
+                            <ul class="event-info__list">
+                                {{ with .Params.day }}
+                                <li class="event-info__item">
+                                    <span class="event-info__icon" aria-hidden="true">🗓️</span>
+                                    <span class="event-info__value">{{ . }}{{ with $.Params.time }} · {{ . }}{{ end }}</span>
+                                </li>
+                                {{ end }}
+                                {{ with .Params.where }}
+                                <li class="event-info__item">
+                                    <span class="event-info__icon" aria-hidden="true">📍</span>
+                                    <span class="event-info__value">{{ . }}</span>
+                                </li>
+                                {{ end }}
+                            </ul>
+                            {{ with .Params.map }}
+                            <div class="event-info__map">
+                                <iframe src="{{ . }}"
+                                        width="100%"
+                                        height="260"
+                                        style="border:0;"
+                                        allowfullscreen=""
+                                        loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            {{ end }}
+                            {{ if .Params.ticketsUrl }}
+                            <a href="{{ .Params.ticketsUrl }}" class="btn btn-primary" target="_blank" rel="noopener">{{ T "join_cta" }}</a>
+                            {{ else }}
+                            <a href="#" class="btn btn-primary disabled" aria-disabled="true">{{ T "join_cta_pending" }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
     </article>
