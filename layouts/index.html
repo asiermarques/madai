@@ -42,7 +42,7 @@
                                 {{ if .Params.ticketsUrl }}
                                 <a href="{{ .Params.ticketsUrl }}" class="btn btn-primary">{{ T "join_cta" }}</a>
                                 {{ else }}
-                                <a href="#" class="btn btn-primary disabled">{{ T "join_cta_pending" }}</a>
+                                <a href="#" class="btn btn-primary disabled" aria-disabled="true" tabindex="-1">{{ T "join_cta_pending" }}</a>
                                 {{ end }}
                             </div>
                         </div>

@@ -3,30 +3,30 @@
         <div class="row">
             <div class="col-7">
                 <nav aria-label="Main navigation">
-                    <p class="links">
-                        <a href="{{ site.Home.RelPermalink }}"
-                           class="{{ if $.IsHome }}current{{ end }}">{{ T "home" }}</a>
+                    <ul class="links">
+                        <li><a href="{{ site.Home.RelPermalink }}"
+                           class="{{ if $.IsHome }}current{{ end }}">{{ T "home" }}</a></li>
                         {{ with $.Site.GetPage "/info/about" }}
-                        <a href="{{ .RelPermalink }}"
-                           class="{{ if eq $.RelPermalink .RelPermalink }}current{{ end }}">{{ T "about" }}</a>
+                        <li><a href="{{ .RelPermalink }}"
+                           class="{{ if eq $.RelPermalink .RelPermalink }}current{{ end }}">{{ T "about" }}</a></li>
                         {{ end }}
                         {{ with $.Site.GetPage "/events" }}
-                        <a href="{{ .RelPermalink }}"
-                           class="{{ if eq $.Section "events" }}current{{ end }}">{{ T "events" }}</a>
+                        <li><a href="{{ .RelPermalink }}"
+                           class="{{ if eq $.Section "events" }}current{{ end }}">{{ T "events" }}</a></li>
                         {{ end }}
-                    </p>
+                    </ul>
                 </nav>
             </div>
           <div class="col-5">
               <nav aria-label="Language switcher">
-                  <p class="links lang-switch">
+                  <ul class="links lang-switch">
                       {{ range $.Site.Home.AllTranslations }}
-                      <a href="{{ .RelPermalink }}"
+                      <li><a href="{{ .RelPermalink }}"
                          class="{{ if eq .Lang $.Lang }}current{{ end }} lang"
                          hreflang="{{ .Language.Lang }}"
-                         aria-label="{{ .Language.Lang | upper }}">{{ .Language.Lang | upper }}</a>
+                         aria-label="{{ .Language.Lang | upper }}">{{ .Language.Lang | upper }}</a></li>
                       {{ end }}
-                  </p>
+                  </ul>
               </nav>
           </div>
         </div>

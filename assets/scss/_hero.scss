@@ -128,4 +128,13 @@
     h1::after { margin-top: 1.5rem; }
     .hero-lead { margin-top: 1.1rem; }
   }
+
+  // Respect reduced-motion: drift the orbs to rest and reveal the text
+  // immediately (no fade-up), per DESIGN.md.
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    &::after,
+    h1,
+    .hero-lead { animation: none; }
+  }
 }

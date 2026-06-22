@@ -25,7 +25,7 @@
     <div class="col-12 col-lg-5 speaker-image">
         {{ with resources.Get $image }}
         {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
-        <img class="speaker-photo" src="{{ .RelPermalink }}" alt="{{ $title }}" loading="lazy">
+        <img class="speaker-photo" src="{{ .RelPermalink }}" alt="{{ $.Page.Params.speaker }}" loading="lazy">
         {{end}}
         {{end}}
     </div>
