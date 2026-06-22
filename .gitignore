@@ -1,7 +1,10 @@
 public
 resources/_gen
 .hugo_build.lock
-.claude
+.claude/*
+!.claude/skills
+.claude/skills/*
+!.claude/skills/add-event
 .idea
 .workflow
 .agents

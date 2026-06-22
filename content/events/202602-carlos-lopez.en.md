@@ -1,5 +1,5 @@
 +++
-date = 2024-02-12T18:30:00Z
+date = 2026-02-12T19:00:00Z
 draft = false
 layout = 'speaker-detail'
 type = 'event'

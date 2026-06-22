@@ -1,6 +1,7 @@
 baseURL = "https://madai.es"
 defaultContentLanguage = 'es'
 defaultContentLanguageInSubdir = false
+buildFuture = true
 
 [languages]
     [languages.es]
