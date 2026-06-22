@@ -6,14 +6,17 @@ buildFuture = true
 [languages]
     [languages.es]
       disabled = false
-      languageCode = 'es'
-      languageName = 'ES'
+      locale = 'es'
+      label = 'ES'
       weight = 1
     [languages.en]
       disabled = false
-      languageCode = 'en'
-      languageName = 'EN'
+      locale = 'en'
+      label = 'EN'
       weight = 2
+# No taxonomies are used; disable Hugo's default tags/categories
+[taxonomies]
+
 [markup]
     defaultMarkdownHandler = 'goldmark'
 
